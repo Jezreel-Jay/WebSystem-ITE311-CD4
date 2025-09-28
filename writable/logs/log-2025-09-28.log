@@ -1,0 +1,406 @@
+CRITICAL - 2025-09-28 17:05:05 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:09 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:14 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:18 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:23 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:38 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:39 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:39 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:39 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:40 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:40 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:43 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:43 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:43 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:43 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:43 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:44 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:05:45 --> ErrorException: Undefined variable $role
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 14.
+ 1 APPPATH\Views\dashboard.php(14): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $role', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 14)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:07:07 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:33 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:34 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:34 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:34 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:35 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:35 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:36 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:36 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:36 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-28 17:10:37 --> ErrorException: Undefined variable $name
+[Method: GET, Route: dashboard]
+in APPPATH\Views\dashboard.php on line 10.
+ 1 APPPATH\Views\dashboard.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php', 10)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\dashboard.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('dashboard', [], true)
+ 5 APPPATH\Controllers\Home.php(29): view('dashboard')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Home->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
