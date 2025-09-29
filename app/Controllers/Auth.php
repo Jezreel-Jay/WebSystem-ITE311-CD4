@@ -24,17 +24,7 @@ class Auth extends BaseController
             
         ];
 
-        // Role-specific dashboard
-        switch ($role) {
-            case 'admin':
-                return view('dashboards/admin', $data);
-            case 'teacher':
-                return view('dashboards/teacher', $data);
-            case 'student':
-                return view('dashboards/student', $data);
-            default:
-                return redirect()->to(base_url('login'))->with('login_error', 'Unknown role.');
-        }
+        return view('auth/dashboard', $data);
     }
 
     /**
@@ -98,6 +88,7 @@ class Auth extends BaseController
         if ($session->get('isLoggedIn')) {
             return redirect()->to(base_url('dashboard'));
         }
+
 
         return view('register');
     }

@@ -17,8 +17,8 @@ $routes->get('/contact', 'Home::contact');
 $routes->get('/login', 'Auth::login');
 $routes->post('/login', 'Auth::attempt');
 $routes->get('/logout', 'Auth::logout');
-$routes->get('/dashboard', 'Home::dashboard');
+//$routes->get('/dashboard', 'Home::dashboard');
+$routes->get('/dashboard', 'Auth::dashboard');
 // Registration
 $routes->get('/register', 'Auth::register');
 $routes->post('/register', 'Auth::store');
-$routes->get('/dashboard', 'Auth::dashboard');

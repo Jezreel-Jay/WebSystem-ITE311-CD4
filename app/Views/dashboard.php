@@ -1,3 +1,5 @@
+dashboard.php (old from lab 4)
+
 <?= $this->extend('template') ?>
 
 <?= $this->section('content') ?>
