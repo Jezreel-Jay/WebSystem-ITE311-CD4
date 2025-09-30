@@ -14,7 +14,7 @@ class ModifyRoleColumnInUsers extends Migration
                 'type'       => 'ENUM',
                 'constraint' => ['admin', 'teacher', 'student'],
                 'null'       => false,
-                'after'      => 'email', // place role after email
+                'after'      => 'password', // place role after email
             ],
         ]);
     }

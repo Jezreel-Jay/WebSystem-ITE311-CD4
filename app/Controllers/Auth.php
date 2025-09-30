@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\UserModel;
 
 class Auth extends BaseController
-    
+   
 {
         public function dashboard()
     {
@@ -17,10 +17,20 @@ class Auth extends BaseController
         }
 
         $role = $session->get('role');
+
+        $userModel = new UserModel();
+        
         $data = [
             'name' => $session->get('userName'),
             'email' => $session->get('userEmail'),
             'role'  => $session->get('role'),
+            'currentUsers' =>  $userModel->countAllResults() ,
+            'courses' => 0,
+            'myCourses' => 0,
+            'myStudents' => 0,
+            'enrolledCourses' => 0,
+            'completedLessons' => 0,
+            'allUsers' => ($role === 'admin') ? $userModel->findAll() : []
             
         ];
 

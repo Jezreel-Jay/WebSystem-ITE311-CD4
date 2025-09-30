@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             'role' => [
                 'type'       => 'ENUM("student","admin")',
                 'default'    => 'student',
+
             ],
             'created_at' => [
                 'type'    => 'DATETIME',
