@@ -26,8 +26,8 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
                     if ($role === 'admin') {
                         $links = [
                             'dashboard' => 'Dashboard',
-                            'manage-users' => 'Manage Users',
-                            'settings' => 'Settings'
+                            //'manage-users' => 'Manage Users',
+                            //'settings' => 'Settings'
                         ];
                     } elseif ($role === 'teacher') {
                         $links = [
@@ -42,8 +42,20 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
                             'assignments' => 'Assignments'
                         ];
                     }
-
-                    foreach ($links as $path => $label):
+                     if ($role === 'admin'): ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle <?= (strpos($uri, 'manage-users') !== false) ? 'active-link' : '' ?>" 
+                            href="#" id="manageUsersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Manage Users
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<?= base_url('dashboard#users') ?>">View All Users</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('dashboard#add-user') ?>">Add User</a></li>
+                                <li><a class="dropdown-item" href="<?= base_url('dashboard#roles') ?>">Roles & Permissions</a></li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
+                   <?php foreach ($links as $path => $label):
                     ?>
                         <li class="nav-item">
                             <a class="nav-link <?= ($uri === $path) ? 'active-link' : '' ?>" href="<?= base_url($path) ?>"><?= $label ?></a>

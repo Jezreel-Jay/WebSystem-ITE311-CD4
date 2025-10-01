@@ -10,6 +10,8 @@ class Auth extends BaseController
         public function dashboard()
     {
         $session = session();
+        
+    
 
         // Authorization check
         if (! $session->get('isLoggedIn')) {
@@ -19,12 +21,16 @@ class Auth extends BaseController
         $role = $session->get('role');
 
         $userModel = new UserModel();
+
         
         $data = [
             'name' => $session->get('userName'),
             'email' => $session->get('userEmail'),
             'role'  => $session->get('role'),
             'currentUsers' =>  $userModel->countAllResults() ,
+            'admins' => $userModel->where('role', 'admin')->countAllResults(),
+            'teachers' =>  $userModel->where('role', 'teacher')->countAllResults(),
+            'students' => $userModel->where('role', 'student')->countAllResults(),
             'courses' => 0,
             'myCourses' => 0,
             'myStudents' => 0,
