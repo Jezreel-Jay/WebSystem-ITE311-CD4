@@ -22,3 +22,8 @@ $routes->get('/dashboard', 'Auth::dashboard');
 // Registration
 $routes->get('/register', 'Auth::register');
 $routes->post('/register', 'Auth::store');
+//$routes->post('/auth/addRole', 'Auth::addRole');
+$routes->post('auth/addUserByAdmin', 'Auth::addUserByAdmin');
+
+$routes->post('auth/updateUserRole', 'Auth::updateUserRole');
+$routes->post('auth/deleteUser', 'Auth::deleteUser');

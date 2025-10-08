@@ -17,12 +17,12 @@
                     <div class="mb-3">
                         <label for="name" class="form-label text-white">Name</label>
                         <input type="text" class="form-control bg-dark text-white border-secondary" 
-                               id="name" name="name" required value="<?= esc(old('name')) ?>">
+                            id="name" name="name" required value="<?= old('name') ?>">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label text-white">Email</label>
                         <input type="email" class="form-control bg-dark text-white border-secondary" 
-                               id="email" name="email" required value="<?= esc(old('email')) ?>">
+                            id="email" name="email" required value="<?= old('email') ?>">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label text-white">Password</label>

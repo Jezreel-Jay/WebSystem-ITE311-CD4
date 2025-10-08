@@ -15,8 +15,9 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
                     <li class="nav-item"><a class="nav-link <?= $uri === '' ? 'active-link' : '' ?>" href="<?= base_url('/') ?>">Home</a></li>
                     <li class="nav-item"><a class="nav-link <?= $uri === 'about' ? 'active-link' : '' ?>" href="<?= base_url('about') ?>">About</a></li>
                     <li class="nav-item"><a class="nav-link <?= $uri === 'contact' ? 'active-link' : '' ?>" href="<?= base_url('contact') ?>">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link <?= $uri === 'login' ? 'active-link' : '' ?>" href="<?= base_url('login') ?>">Login</a></li>
                     <li class="nav-item"><a class="nav-link <?= $uri === 'register' ? 'active-link' : '' ?>" href="<?= base_url('register') ?>">Register</a></li>
+                    <li class="nav-item"><a class="nav-link <?= $uri === 'login' ? 'active-link' : '' ?>" href="<?= base_url('login') ?>">Login</a></li>
+                    
 
                 <?php else: ?>
                     <?php
@@ -32,29 +33,28 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
                     } elseif ($role === 'teacher') {
                         $links = [
                             'dashboard' => 'Dashboard',
-                            'my-classes' => 'My Classes',
-                            'grades' => 'Grades'
+                           //'my-classes' => 'My Classes',
+                           // 'grades' => 'Grades'
                         ];
                     } elseif ($role === 'student') {
                         $links = [
                             'dashboard' => 'Dashboard',
-                            'subjects' => 'Subjects',
-                            'assignments' => 'Assignments'
+                           // 'subjects' => 'Subjects',
+                            //'assignments' => 'Assignments'
                         ];
                     }
-                     if ($role === 'admin'): ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle <?= (strpos($uri, 'manage-users') !== false) ? 'active-link' : '' ?>" 
-                            href="#" id="manageUsersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Manage Users
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?= base_url('dashboard#users') ?>">View All Users</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url('dashboard#add-user') ?>">Add User</a></li>
-                                <li><a class="dropdown-item" href="<?= base_url('dashboard#roles') ?>">Roles & Permissions</a></li>
-                            </ul>
-                        </li>
-                    <?php endif; ?>
+                        if ($role === 'admin'): ?>
+                            <li class="nav-item">
+                                <a 
+                                    class="nav-link <?= (strpos($uri, 'dashboard#add-user') !== false) ? 'active-link' : '' ?>" 
+                                    href="<?= base_url('dashboard#add-user') ?>"
+                                    id="manageUsersLink"
+                                >
+                                    Manage Users
+                                </a>
+                            </li>
+                        <?php endif; ?>
+
                    <?php foreach ($links as $path => $label):
                     ?>
                         <li class="nav-item">
