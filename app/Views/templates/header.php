@@ -50,7 +50,7 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
                                     href="<?= base_url('dashboard#add-user') ?>"
                                     id="manageUsersLink"
                                 >
-                                    Manage Users
+                                    
                                 </a>
                             </li>
                         <?php endif; ?>

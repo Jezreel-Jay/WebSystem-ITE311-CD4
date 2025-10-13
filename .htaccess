@@ -1,13 +1,30 @@
 # Disable directory browsing
 Options -Indexes
 
+# Block direct access to the /public folder and return 404 instead of 403
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+RewriteEngine On
+    Options +FollowSymlinks
+	RewriteCond %{REQUEST_URI} ^/ITE311-RIVERA/public/?$ [NC]
+	RewriteRule ^ error_404.html [L]
+
+# ----------------------------------------------------------------------
+# Block direct access to index.php in the URL
+# ----------------------------------------------------------------------
+
+   
+    # If URL explicitly contains index.php/, show 404 error
+    RewriteCond %{THE_REQUEST} \s/+index\.php [NC]
+    RewriteRule ^index\.php/?(.*)$ error_404.html [L]
+
 # ----------------------------------------------------------------------
 # Rewrite engine
 # ----------------------------------------------------------------------
 
 # Turning on the rewrite engine is necessary for the following rules and features.
 # FollowSymLinks must be enabled for this to work.
-<IfModule mod_rewrite.c>
+
 	Options +FollowSymlinks
 	RewriteEngine On
 
@@ -40,8 +57,7 @@ Options -Indexes
 
 <IfModule !mod_rewrite.c>
 	# If we don't have mod_rewrite installed, all 404's
-	# can be sent to index.php, and everything works as normal.
-	ErrorDocument 404 index.php
+    ErrorDocument 404 /ITE311-RIVERA/public/error_404.html
 </IfModule>
 
 # Disable server signature start

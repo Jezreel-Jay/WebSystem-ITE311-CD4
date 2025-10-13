@@ -30,6 +30,19 @@ if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
  */
 
 // Path to the front controller (this file)
+
+// Block direct browser access to index.php (show custom 404)
+if (isset($_SERVER['REQUEST_URI']) && preg_match('/index\.php/i', $_SERVER['REQUEST_URI'])) {
+    http_response_code(404);
+    include __DIR__ . '/public/error_404.html';
+    exit;
+}
+if (isset($_SERVER['REQUEST_URI']) && preg_match('/(index\.php|\/public\/?)/i', $_SERVER['REQUEST_URI'])) {
+    http_response_code(404);
+    include __DIR__ . '/public/error_404.html';
+    exit;
+}
+
 define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
 
 // Ensure the current directory is pointing to the front controller's directory

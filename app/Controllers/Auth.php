@@ -69,8 +69,6 @@ class Auth extends BaseController
     }
 
 
-    
-
 
     /**
      * Show Login Page

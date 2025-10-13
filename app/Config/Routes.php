@@ -6,6 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
+// you can customize this view
+$routes->set404Override(function() {
+    echo view('app/public/error_404.html'); 
+});
+
 // Default route
 $routes->get('/', 'Home::index');
 
