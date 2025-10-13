@@ -6,8 +6,14 @@ Options -Indexes
 <IfModule mod_rewrite.c>
 RewriteEngine On
     Options +FollowSymlinks
-	RewriteCond %{REQUEST_URI} ^/ITE311-RIVERA/public/?$ [NC]
-	RewriteRule ^ error_404.html [L]
+
+# Redirect localhost/dashboard to your custom 404 page
+RewriteCond %{REQUEST_URI} ^/dashboard/?$ [NC]
+RewriteRule ^.*$ /ITE311-RIVERA/public/error_404.html [L,R=404]
+
+# (Optional) Redirect localhost/../../dashboard attempts too
+RewriteCond %{THE_REQUEST} \.\./\.\./dashboard [NC]
+RewriteRule ^.*$ /ITE311-RIVERA/public/error_404.html [L,R=404]
 
 # ----------------------------------------------------------------------
 # Block direct access to index.php in the URL
@@ -27,6 +33,8 @@ RewriteEngine On
 
 	Options +FollowSymlinks
 	RewriteEngine On
+
+
 
 	# If you installed CodeIgniter in a subfolder, you will need to
 	# change the following line to match the subfolder you need.

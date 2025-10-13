@@ -34,6 +34,8 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'validateurl' => \App\Filters\ValidateUrlFilter::class,
+
     ];
 
     /**
@@ -75,6 +77,7 @@ class Filters extends BaseFilters
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
+            'validateurl',
         ],
         'after' => [
             // 'honeypot',

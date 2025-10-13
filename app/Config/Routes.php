@@ -7,12 +7,20 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 // you can customize this view
+// $routes->set404Override(function() {
+//     echo view('app/public/error_404.html'); 
+// });
 $routes->set404Override(function() {
-    echo view('app/public/error_404.html'); 
+    echo file_get_contents(FCPATH . 'public/error_404.html');
 });
 
 // Default route
 $routes->get('/', 'Home::index');
+$routes->get('/Home', function() {
+    return redirect()->to('/');
+});
+
+
 
 // Custom routes
 $routes->get('/about', 'Home::about');
