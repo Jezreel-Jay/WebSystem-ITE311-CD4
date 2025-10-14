@@ -4,16 +4,22 @@ Options -Indexes
 # Block direct access to the /public folder and return 404 instead of 403
 # ----------------------------------------------------------------------
 <IfModule mod_rewrite.c>
+Options +FollowSymlinks
 RewriteEngine On
-    Options +FollowSymlinks
+
+
+RewriteCond %{THE_REQUEST} \.\./\.\./login [NC]
+RewriteRule ^.*$ login [L,R=302]
 
 # Redirect localhost/dashboard to your custom 404 page
-RewriteCond %{REQUEST_URI} ^/dashboard/?$ [NC]
-RewriteRule ^.*$ /ITE311-RIVERA/public/error_404.html [L,R=404]
+# RewriteCond %{REQUEST_URI} ^/dashboard/?$ [NC]
+# RewriteRule ^.*$ /ITE311-RIVERA/public/error_404.html [L,R=404]
 
 # (Optional) Redirect localhost/../../dashboard attempts too
 RewriteCond %{THE_REQUEST} \.\./\.\./dashboard [NC]
 RewriteRule ^.*$ /ITE311-RIVERA/public/error_404.html [L,R=404]
+
+
 
 # ----------------------------------------------------------------------
 # Block direct access to index.php in the URL

@@ -40,3 +40,4 @@ $routes->post('auth/addUserByAdmin', 'Auth::addUserByAdmin');
 
 $routes->post('auth/updateUserRole', 'Auth::updateUserRole');
 $routes->post('auth/deleteUser', 'Auth::deleteUser');
+

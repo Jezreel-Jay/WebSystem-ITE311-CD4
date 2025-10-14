@@ -10,44 +10,54 @@
 
 <?php if ($role === 'admin'): ?>
     <!-- ADMIN DASHBOARD -->
+    <h2 class="mb-4 text-primary fw-bold">Admin Dashboard</h2>
     <div id="users" class="col-md-3 mb-3">
         <div class="card text-white bg-primary">
-            <div class="card-body">
-                <h5 class="card-title">All Users</h5>
-                <p class="card-text display-4 text-center"><?= esc($currentUsers) ?></p>
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    <i class="bi bi-people-fill me-2"></i>All Users
+                </h5>
+                <p class="card-text display-4"><?= esc($currentUsers) ?></p>
             </div>
         </div>
     </div>
 
     <div id="roles" class="col-md-3 mb-3">
         <div class="card text-white bg-danger">
-            <div class="card-body">
-                <h5 class="card-title">Admins</h5>
-                <p class="card-text display-4 text-center"><?= esc($admins) ?></p>
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    <i class="bi bi-shield-lock-fill me-2"></i>Admins
+                </h5>
+                <p class="card-text display-4"><?= esc($admins) ?></p>
             </div>
         </div>
     </div>
 
     <div class="col-md-3 mb-3">
         <div class="card text-white bg-success">
-            <div class="card-body">
-                <h5 class="card-title">Teachers</h5>
-                <p class="card-text display-4 text-center"><?= esc($teachers) ?></p>
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    <i class="bi bi-person-badge-fill me-2"></i>Teachers
+                </h5>
+                <p class="card-text display-4"><?= esc($teachers) ?></p>
             </div>
         </div>
     </div>
 
     <div class="col-md-3 mb-3">
         <div class="card text-white bg-info">
-            <div class="card-body">
-                <h5 class="card-title">Students</h5>
-                <p class="card-text display-4 text-center"><?= esc($students) ?></p>
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    <i class="bi bi-mortarboard-fill me-2"></i>Students
+                </h5>
+                <p class="card-text display-4"><?= esc($students) ?></p>
             </div>
         </div>
     </div>
 
+
 <div class="mt-5" id="add-user">
-    <h3 class="mb-3">Add New User</h3>
+    <h3 class="mb-3 fw-bold" style="color:#008080;">Add New User</h3>
 
     <?php if (session()->getFlashdata('add_success')): ?>
         <div class="alert alert-success"><?= esc(session()->getFlashdata('add_success')) ?></div>
@@ -56,8 +66,9 @@
     <?php endif; ?>
 
     <!-- Horizontal Form Container -->
-    <div class="border p-4 bg-white shadow-sm d-flex flex-wrap align-items-end gap-3" style="border-radius:10px;">
-        <form action="<?= base_url('auth/addUserByAdmin') ?>" method="post" class="d-flex flex-wrap gap-3 align-items-end">
+    <div class="border p-4 bg-white shadow-sm" 
+     style="border-radius:10px; width:100%; display:flex; flex-wrap:wrap; align-items:flex-end; gap:15px;">
+        <form action="<?= base_url('auth/addUserByAdmin') ?>" method="post" class="d-flex flex-wrap gap-3 align-items-end w-100">
 
             <div style="flex:1 1 150px;">
                 <label for="name" class="form-label fw-bold">Name</label>
@@ -107,6 +118,7 @@
 
 <?php elseif ($role === 'teacher'): ?>
     <!-- TEACHER DASHBOARD -->
+    <h2 class="mb-4 text-success fw-bold">Teacher Dashboard</h2>
     <div class="col-md-3 mb-3">
         <div class="card text-white bg-primary">
             <div class="card-body">
@@ -127,6 +139,7 @@
 
 <?php elseif ($role === 'student'): ?>
     <!-- STUDENT DASHBOARD -->
+    <h2 class="mb-4 text-info fw-bold">Student Dashboard</h2>
     <div class="col-md-3 mb-3">
         <div class="card text-white bg-primary">
             <div class="card-body">
@@ -157,7 +170,9 @@
 
 <?php if ($role === 'admin' && !empty($allUsers)): ?>
 <div id="manage-users" class="mt-5">
-    <h3 class="mb-3">Manage Users</h3>
+    <h3 class="mb-3 fw-bold" style="color:#4169E1;">Manage Users</h3>
+
+    
 
     <!-- Flash Messages -->
     <?php if (session()->getFlashdata('success')): ?>

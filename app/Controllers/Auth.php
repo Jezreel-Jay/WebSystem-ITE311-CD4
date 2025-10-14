@@ -181,6 +181,16 @@ class Auth extends BaseController
 
         $userModel = new UserModel();
 
+        // Allow only one admin registration from outside
+        if ($role === 'admin') {
+            $existingAdmin = $userModel->where('role', 'admin')->first();
+            if ($existingAdmin) {
+                return redirect()->back()->withInput()
+                    ->with('register_error', 'Admin registration is closed. Please contact the system administrator.');
+            }
+        }
+
+
         // Check for existing email
         if ($userModel->where('email', $email)->first()) {
             return redirect()->back()->withInput()->with('register_error', 'Email is already registered.');
@@ -293,13 +303,27 @@ public function deleteUser()
     $id = $this->request->getPost('id');
     $userModel = new UserModel();
 
+    // Prevent deleting main admin
     if ($id == 1) {
         return redirect()->back()->with('error', 'Main admin cannot be deleted.');
     }
 
+    // Get user info before deleting
+    $user = $userModel->find($id);
+
+    if (!$user) {
+        return redirect()->back()->with('error', 'User not found.');
+    }
+
+    // Delete user
     $userModel->delete($id);
-    return redirect()->back()->with('success', 'User deleted successfully!');
+
+    // Get name or email for message
+    $userName = $user['name'] ?? $user['email'] ?? 'Unknown User';
+
+    return redirect()->back()->with('success', "User '{$userName}' deleted successfully!");
 }
+
 
 
 }

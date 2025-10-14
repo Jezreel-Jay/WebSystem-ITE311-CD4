@@ -11,8 +11,16 @@ class ValidateUrlFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $uriString = $_SERVER['REQUEST_URI'];
+        // $uri = service('uri'); 
+        // $rawUri = $uri->getPath();
+
+                // Allow this exact URL
+        // if ($rawUri === '/ITE311-RIVERA/../../login') {
+        //     return null; // continue normally
+        // }
 
         //  Block URLs with multiple slashes (like ////login)
+        // if (preg_match('#/{2,}#', $rawUri) || strpos($rawUri, '..') !== false) {
         if (preg_match('#/{2,}#', $uriString)) {
             return service('response')
                 ->setStatusCode(404)
