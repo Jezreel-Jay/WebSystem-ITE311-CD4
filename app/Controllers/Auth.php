@@ -86,7 +86,32 @@ class Auth extends BaseController
     /**
      * Handle Login Attempt
      */
-    public function attempt()
+    // public function attempt()
+    // {
+    //     $request = $this->request;
+    //     $email = trim((string) $request->getPost('email'));
+    //     $password = (string) $request->getPost('password');
+
+    //     $userModel = new UserModel();
+    //     $user = $userModel->where('email', $email)->first();
+
+    //     if ($user && password_verify($password, $user['password'])) {
+    //         $session = session();
+    //         $session->set([
+    //             'isLoggedIn' => true,
+    //             'userEmail'  => $email,
+    //             'userName'   => $user['name'],
+    //             'role'       => $user['role'],                
+             
+                
+    //         ]);
+    //         return redirect()->to(base_url('dashboard'));
+    //     }
+
+    //     return redirect()->back()->with('login_error', 'Invalid credentials');
+    // }
+
+        public function attempt()
     {
         $request = $this->request;
         $email = trim((string) $request->getPost('email'));
@@ -101,11 +126,20 @@ class Auth extends BaseController
                 'isLoggedIn' => true,
                 'userEmail'  => $email,
                 'userName'   => $user['name'],
-                'role'       => $user['role'],                
-             
-                
+                'role'       => $user['role'],
             ]);
-            return redirect()->to(base_url('dashboard'));
+
+            // Role-based redirection
+            switch ($user['role']) {
+                case 'student':
+                    return redirect()->to(base_url('/announcements'));
+                case 'teacher':
+                    return redirect()->to(base_url('/teacher/dashboard'));
+                case 'admin':
+                    return redirect()->to(base_url('/admin/dashboard'));
+                default:
+                    return redirect()->to(base_url('/login'))->with('login_error', 'Invalid role.');
+            }
         }
 
         return redirect()->back()->with('login_error', 'Invalid credentials');
@@ -281,7 +315,7 @@ class Auth extends BaseController
     }
 
     public function updateUserRole()
-{
+    {
     $id = $this->request->getPost('id');
     $role = $this->request->getPost('role');
     $userModel = new UserModel();
@@ -296,33 +330,33 @@ class Auth extends BaseController
 
     $userModel->update($id, ['role' => $role]);
     return redirect()->back()->with('success', 'User role updated successfully!');
-}
-
-public function deleteUser()
-{
-    $id = $this->request->getPost('id');
-    $userModel = new UserModel();
-
-    // Prevent deleting main admin
-    if ($id == 1) {
-        return redirect()->back()->with('error', 'Main admin cannot be deleted.');
     }
 
-    // Get user info before deleting
-    $user = $userModel->find($id);
+    public function deleteUser()
+    {
+        $id = $this->request->getPost('id');
+        $userModel = new UserModel();
 
-    if (!$user) {
-        return redirect()->back()->with('error', 'User not found.');
+        // Prevent deleting main admin
+        if ($id == 1) {
+            return redirect()->back()->with('error', 'Main admin cannot be deleted.');
+        }
+
+        // Get user info before deleting
+        $user = $userModel->find($id);
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+        // Delete user
+        $userModel->delete($id);
+
+        // Get name or email for message
+        $userName = $user['name'] ?? $user['email'] ?? 'Unknown User';
+
+        return redirect()->back()->with('success', "User '{$userName}' deleted successfully!");
     }
-
-    // Delete user
-    $userModel->delete($id);
-
-    // Get name or email for message
-    $userName = $user['name'] ?? $user['email'] ?? 'Unknown User';
-
-    return redirect()->back()->with('success', "User '{$userName}' deleted successfully!");
-}
 
 
 

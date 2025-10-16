@@ -46,3 +46,8 @@ $routes->get('/announcements', 'Announcement::index');
 
 // $routes->get('/dashboard/announcements', 'Announcement::create', ['filter' => 'admin']);
 // $routes->post('/dashboard/announcements/store', 'Announcement::store', ['filter' => 'admin']);
+
+
+// Role-specific dashboards
+$routes->get('/teacher/dashboard', 'Teacher::dashboard');
+$routes->get('/admin/dashboard', 'Admin::dashboard');

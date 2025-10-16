@@ -12,8 +12,10 @@ class Announcement extends Controller
         // Load model
         $announcementModel = new AnnouncementModel();
 
-        // Fetch all announcements (will be empty if table not yet created)
-        $data['announcements'] = $announcementModel->findAll();
+        // Order by created_at DESC (newest first)
+        $data['announcements'] = $announcementModel
+        ->orderBy('created_at', 'DESC')
+        ->findAll();
 
         // Load view
         return view('announcements', $data);
