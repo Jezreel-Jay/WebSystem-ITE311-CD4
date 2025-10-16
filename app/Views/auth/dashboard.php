@@ -182,7 +182,7 @@
     <?php endif; ?>
 
     <table class="table table-bordered table-striped align-middle">
-        <thead class="table-dark">
+        <thead class="table-dark" >
             <tr>
                 <th>ID</th>
                 <th>Name</th>

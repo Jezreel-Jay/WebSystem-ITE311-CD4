@@ -15,7 +15,7 @@
 
         /* Base container for all pages */
         .main-container {
-            background: #fff; 
+            background: #e0f7ff; 
             border-radius: 10px; 
             padding: 30px; 
             margin: 10px auto;        
