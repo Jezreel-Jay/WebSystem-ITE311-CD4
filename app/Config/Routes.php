@@ -51,3 +51,19 @@ $routes->get('/announcements', 'Announcement::index');
 // Role-specific dashboards
 $routes->get('/teacher/dashboard', 'Teacher::dashboard');
 $routes->get('/admin/dashboard', 'Admin::dashboard');
+
+// Admin routes
+$routes->group('admin', ['filter' => 'roleauth'], function($routes) {
+    $routes->get('dashboard', 'Admin::dashboard');
+    // add more admin routes here if needed
+});
+
+// Teacher routes
+$routes->group('teacher', ['filter' => 'roleauth'], function($routes) {
+    $routes->get('dashboard', 'Teacher::dashboard');
+    // add more teacher routes here if needed
+});
+
+// $routes->group('student', ['filter' => 'roleauth'], function($routes) {
+//     // student-specific pages
+// });
