@@ -41,3 +41,8 @@ $routes->post('auth/addUserByAdmin', 'Auth::addUserByAdmin');
 $routes->post('auth/updateUserRole', 'Auth::updateUserRole');
 $routes->post('auth/deleteUser', 'Auth::deleteUser');
 
+//examination 
+$routes->get('/announcements', 'Announcement::index');
+
+// $routes->get('/dashboard/announcements', 'Announcement::create', ['filter' => 'admin']);
+// $routes->post('/dashboard/announcements/store', 'Announcement::store', ['filter' => 'admin']);
