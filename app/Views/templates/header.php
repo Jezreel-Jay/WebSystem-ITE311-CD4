@@ -26,6 +26,7 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
                     $links = [];
                     if ($role === 'admin') {
                         $links = [
+                            'activity-log' => 'Activity Log',
                             'dashboard' => 'Dashboard',
                             //'manage-users' => 'Manage Users',
                             //'settings' => 'Settings'
@@ -62,15 +63,17 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
                         </li>
                     <?php endforeach; ?>
 
-                    <li class="nav-item">
-                        <a 
-                            class="nav-link text-danger" 
-                            href="<?= base_url('logout') ?>" 
-                            onclick="return confirm('Are you sure you want to log out?');"
-                        >
-                            Logout
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a 
+                                class="nav-link d-flex align-items-center text-danger fw-semibold"
+                                href="<?= base_url('logout') ?>" 
+                                onclick="return confirm('Are you sure you want to log out?');"
+                                style="gap: 6px;"
+                            >
+                                <i class="bi bi-box-arrow-right fs-5"></i> Logout
+                            </a>
+                        </li>
+
                 <?php endif; ?>
 
             </ul>

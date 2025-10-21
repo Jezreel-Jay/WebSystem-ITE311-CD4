@@ -57,7 +57,7 @@
 
 
 <div class="mt-5" id="add-user">
-    <h3 class="mb-3 fw-bold" style="color:#008080;">Add New User</h3>
+    <h3 class="mb-3" style="color:#008080;">Add New User</h3>
 
     <?php if (session()->getFlashdata('add_success')): ?>
         <div class="alert alert-success"><?= esc(session()->getFlashdata('add_success')) ?></div>
@@ -170,9 +170,7 @@
 
 <?php if ($role === 'admin' && !empty($allUsers)): ?>
 <div id="manage-users" class="mt-5">
-    <h3 class="mb-3 fw-bold" style="color:#4169E1;">Manage Users</h3>
-
-    
+    <h3 class="mb-3" style="color:#4169E1;">Manage Users</h3>
 
     <!-- Flash Messages -->
     <?php if (session()->getFlashdata('success')): ?>
@@ -182,13 +180,13 @@
     <?php endif; ?>
 
     <table class="table table-bordered table-striped align-middle">
-        <thead class="table-dark" >
+        <thead class="table-dark">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th style="width: 160px;">Role</th>
-                <th style="width: 130px;">Actions</th>
+                <th style="width: 60px;">ID</th>
+                <th style="width: 190px;">Name</th>
+                <th style="width: 250px;">Email</th>
+                <th style="width: 140px;">Role</th>
+                <th style="width: 260px; text-align: right;">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -197,29 +195,37 @@
                     <td><?= esc($user['id']) ?></td>
                     <td><?= esc($user['name']) ?></td>
                     <td><?= esc($user['email']) ?></td>
-                    <td class="p-1">
+
+                    <td class="text-center">
                         <?php $masterAdminId = 1; ?>
                         <?php if ($user['id'] != $masterAdminId): ?>
-                        <!-- Inline Role Edit Form -->
-                        <form action="<?= base_url('auth/updateUserRole') ?>" method="post" class="d-flex align-items-center" style="gap:4px;">
-                            <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
-                            <select name="role" class="form-select form-select-sm" style="width:110px;">
-                                <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
-                                <option value="teacher" <?= $user['role'] === 'teacher' ? 'selected' : '' ?>>Teacher</option>
-                                <option value="student" <?= $user['role'] === 'student' ? 'selected' : '' ?>>Student</option>
-                            </select>
-                            <button type="submit" class="btn btn-sm btn-success px-2">✓</button>
-                        </form>
+                            <span class="badge bg-secondary"><?= ucfirst(esc($user['role'])) ?></span>
                         <?php else: ?>
                             <span class="text-muted">Admin (Protected)</span>
                         <?php endif; ?>
                     </td>
-                    <td class="p-1">
+
+                    <td class="text-end">
                         <?php if ($user['id'] != $masterAdminId): ?>
-                            <form action="<?= base_url('auth/deleteUser') ?>" method="post" onsubmit="return confirm('Are you sure you want to delete this user?')" style="display:inline;">
-                                <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
-                                <button type="submit" class="btn btn-sm btn-danger px-3">Delete</button>
-                            </form>
+                            <div class="d-flex justify-content-end align-items-center gap-2">
+                                <!-- Update Role Form -->
+                                <form action="<?= base_url('auth/updateUserRole') ?>" method="post" class="d-flex align-items-center gap-2 m-0">
+                                    <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
+                                    <select name="role" class="form-select form-select-sm" style="width:110px;">
+                                        <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
+                                        <option value="teacher" <?= $user['role'] === 'teacher' ? 'selected' : '' ?>>Teacher</option>
+                                        <option value="student" <?= $user['role'] === 'student' ? 'selected' : '' ?>>Student</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-success">Update</button>
+                                </form>
+
+                                <!-- Delete Form -->
+                                <form action="<?= base_url('auth/deleteUser') ?>" method="post"
+                                      onsubmit="return confirm('Are you sure you want to delete this user?')" class="m-0">
+                                    <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
                         <?php else: ?>
                             <span class="text-muted">Protected</span>
                         <?php endif; ?>
@@ -233,6 +239,5 @@
 
 
 
-
-
 <?= $this->endSection() ?>
+

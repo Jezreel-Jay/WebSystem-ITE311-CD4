@@ -29,7 +29,7 @@ class Filters extends BaseFilters
         'toolbar'       => DebugToolbar::class,
         'honeypot'      => Honeypot::class,
         //midterm examm
-        'roleauth'  => \App\Filters\RoleAuth::class,
+        //'roleauth'  => \App\Filters\RoleAuth::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'cors'          => Cors::class,

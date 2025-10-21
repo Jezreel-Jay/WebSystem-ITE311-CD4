@@ -86,32 +86,7 @@ class Auth extends BaseController
     /**
      * Handle Login Attempt
      */
-    // public function attempt()
-    // {
-    //     $request = $this->request;
-    //     $email = trim((string) $request->getPost('email'));
-    //     $password = (string) $request->getPost('password');
-
-    //     $userModel = new UserModel();
-    //     $user = $userModel->where('email', $email)->first();
-
-    //     if ($user && password_verify($password, $user['password'])) {
-    //         $session = session();
-    //         $session->set([
-    //             'isLoggedIn' => true,
-    //             'userEmail'  => $email,
-    //             'userName'   => $user['name'],
-    //             'role'       => $user['role'],                
-             
-                
-    //         ]);
-    //         return redirect()->to(base_url('dashboard'));
-    //     }
-
-    //     return redirect()->back()->with('login_error', 'Invalid credentials');
-    // }
-
-        public function attempt()
+    public function attempt()
     {
         $request = $this->request;
         $email = trim((string) $request->getPost('email'));
@@ -126,24 +101,50 @@ class Auth extends BaseController
                 'isLoggedIn' => true,
                 'userEmail'  => $email,
                 'userName'   => $user['name'],
-                'role'       => $user['role'],
+                'role'       => $user['role'],                
+                
             ]);
 
-            // Role-based redirection
-            switch ($user['role']) {
-                case 'student':
-                    return redirect()->to(base_url('/announcements'));
-                case 'teacher':
-                    return redirect()->to(base_url('/teacher/dashboard'));
-                case 'admin':
-                    return redirect()->to(base_url('/admin/dashboard'));
-                default:
-                    return redirect()->to(base_url('/login'))->with('login_error', 'Invalid role.');
-            }
+            
+            return redirect()->to(base_url('dashboard'));
         }
 
         return redirect()->back()->with('login_error', 'Invalid credentials');
     }
+
+    //     public function attempt()
+    // {
+    //     $request = $this->request;
+    //     $email = trim((string) $request->getPost('email'));
+    //     $password = (string) $request->getPost('password');
+
+    //     $userModel = new UserModel();
+    //     $user = $userModel->where('email', $email)->first();
+
+    //     if ($user && password_verify($password, $user['password'])) {
+    //         $session = session();
+    //         $session->set([
+    //             'isLoggedIn' => true,
+    //             'userEmail'  => $email,
+    //             'userName'   => $user['name'],
+    //             'role'       => $user['role'],
+    //         ]);
+
+    //         // Role-based redirection
+    //         switch ($user['role']) {
+    //             case 'student':
+    //                 return redirect()->to(base_url('/announcements'));
+    //             case 'teacher':
+    //                 return redirect()->to(base_url('/teacher/dashboard'));
+    //             case 'admin':
+    //                 return redirect()->to(base_url('/admin/dashboard'));
+    //             default:
+    //                 return redirect()->to(base_url('/login'))->with('login_error', 'Invalid role.');
+    //         }
+    //     }
+
+    //     return redirect()->back()->with('login_error', 'Invalid credentials');
+    // }
 
 
     /**
