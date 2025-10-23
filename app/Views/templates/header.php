@@ -1,12 +1,14 @@
 <?php
 $session = session();
-$uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
+$uri = uri_string();
 ?>
 <nav class="navbar navbar-expand-lg" style="background-color: #003366;">
     <div class="container-fluid">
         <a class="navbar-brand text-white" href="<?= base_url('/') ?>">MyWeb</a>
         <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" 
-                data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
@@ -17,62 +19,41 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
                     <li class="nav-item"><a class="nav-link <?= $uri === 'contact' ? 'active-link' : '' ?>" href="<?= base_url('contact') ?>">Contact</a></li>
                     <li class="nav-item"><a class="nav-link <?= $uri === 'register' ? 'active-link' : '' ?>" href="<?= base_url('register') ?>">Register</a></li>
                     <li class="nav-item"><a class="nav-link <?= $uri === 'login' ? 'active-link' : '' ?>" href="<?= base_url('login') ?>">Login</a></li>
-                    
 
                 <?php else: ?>
                     <?php
-                    // Define role links
                     $role = $session->get('role');
                     $links = [];
+
                     if ($role === 'admin') {
                         $links = [
-                            'activity-log' => 'Activity Log',
                             'dashboard' => 'Dashboard',
-                            //'manage-users' => 'Manage Users',
-                            //'settings' => 'Settings'
+                            'manage-users' => 'Manage Users'
                         ];
                     } elseif ($role === 'teacher') {
-                        $links = [
-                            'dashboard' => 'Dashboard',
-                           //'my-classes' => 'My Classes',
-                           // 'grades' => 'Grades'
-                        ];
+                        $links = ['dashboard' => 'Dashboard'];
                     } elseif ($role === 'student') {
-                        $links = [
-                            'dashboard' => 'Dashboard',
-                           // 'subjects' => 'Subjects',
-                            //'assignments' => 'Assignments'
-                        ];
+                        $links = ['dashboard' => 'Dashboard'];
                     }
-                        if ($role === 'admin'): ?>
-                            <li class="nav-item">
-                                <a 
-                                    class="nav-link <?= (strpos($uri, 'dashboard#add-user') !== false) ? 'active-link' : '' ?>" 
-                                    href="<?= base_url('dashboard#add-user') ?>"
-                                    id="manageUsersLink"
-                                >
-                                    
-                                </a>
-                            </li>
-                        <?php endif; ?>
-
-                   <?php foreach ($links as $path => $label):
                     ?>
+
+                    <?php foreach ($links as $path => $label): ?>
                         <li class="nav-item">
-                            <a class="nav-link <?= ($uri === $path) ? 'active-link' : '' ?>" href="<?= base_url($path) ?>"><?= $label ?></a>
+                            <a class="nav-link text-white <?= ($uri === $path) ? 'active-link' : '' ?>" 
+                               href="<?= base_url($path) ?>">
+                                <?= $label ?>
+                            </a>
                         </li>
                     <?php endforeach; ?>
 
-                        <li class="nav-item">
-                            <a 
-                                class="nav-link d-flex align-items-center text-danger fw-semibold"
-                                href="<?= base_url('logout') ?>" 
-                                onclick="return confirm('Are you sure you want to log out?');"
-                                style="gap: 6px;"
-                            >
-                                <i class="bi bi-box-arrow-right fs-5"></i> Logout
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center text-danger fw-semibold"
+                           href="<?= base_url('logout') ?>" 
+                           onclick="return confirm('Are you sure you want to log out?');"
+                           style="gap: 6px;">
+                            <i class="bi bi-box-arrow-right fs-5"></i> Logout
+                        </a>
+                    </li>
 
                 <?php endif; ?>
 
@@ -80,5 +61,3 @@ $uri = uri_string(); // e.g., 'dashboard', 'my-classes', 'login'
         </div>
     </div>
 </nav>
-
-

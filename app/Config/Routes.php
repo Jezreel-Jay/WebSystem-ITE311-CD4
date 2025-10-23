@@ -42,5 +42,6 @@ $routes->post('auth/updateUserRole', 'Auth::updateUserRole');
 $routes->post('auth/deleteUser', 'Auth::deleteUser');
 
 
-// Activity Log page (admin only)
-$routes->get('activity-log', 'Auth::activityLogPage');
+$routes->get('manage-users', 'Auth::manageUsers');
+
+

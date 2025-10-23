@@ -6,7 +6,8 @@ use App\Models\UserModel;
 
 class Auth extends BaseController
    
-{
+{   
+
         public function dashboard()
     {
         $session = session();
@@ -308,7 +309,8 @@ class Auth extends BaseController
 
         if ($userId) {
             return redirect()
-                ->to(base_url('dashboard'))
+                // ->to(base_url('dashboard'))
+                ->to(base_url('manage-users'))
                 ->with('add_success', "New {$role} account '{$name}' added successfully!");
         }
 
@@ -359,6 +361,22 @@ class Auth extends BaseController
         return redirect()->back()->with('success', "User '{$userName}' deleted successfully!");
     }
 
+        public function manageUsers()
+    {
+        $session = session();
+        if (! $session->get('isLoggedIn') || $session->get('role') !== 'admin') {
+            return redirect()->to('login');
+        }
+
+        $userModel = new \App\Models\UserModel();
+        $data = [
+            'name' => $session->get('name'),
+            'role' => $session->get('role'),
+            'allUsers' => $userModel->findAll(),
+        ];
+
+        return view('auth/manage_users', $data);
+    }
 
 
 }

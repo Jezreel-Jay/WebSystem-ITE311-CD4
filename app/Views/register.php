@@ -34,7 +34,7 @@
                         <input type="password" class="form-control bg-white text-dark border-secondary" 
                                id="password_confirm" name="password_confirm" required>
                     </div>
-
+<!-- 
                     <div class="mb-3">
                         <label for="role" class="form-label text-white">Role</label>
                         <select class="form-control bg-white text-dark border-secondary" 
@@ -42,7 +42,7 @@
                             <option value="student" <?= old('role') === 'student' ? 'selected' : '' ?>>Student</option>
                             <option value="teacher" <?= old('role') === 'teacher' ? 'selected' : '' ?>>Teacher</option>
                             <option value="admin" <?= old('role') === 'admin' ? 'selected' : '' ?>>Admin</option>
-                        </select>
+                        </select> -->
                     </div>
                                         
                         <button type="submit" 
