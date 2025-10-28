@@ -40,8 +40,23 @@ $routes->post('auth/addUserByAdmin', 'Auth::addUserByAdmin');
 
 $routes->post('auth/updateUserRole', 'Auth::updateUserRole');
 $routes->post('auth/deleteUser', 'Auth::deleteUser');
-
+//$routes->post('auth/updateUserRole', 'Auth::updateUserRole');
 
 $routes->get('manage-users', 'Auth::manageUsers');
 
+// // dasdasdasd
+// $routes->post('auth/restrictUser', 'Auth::restrictUser');
+// $routes->post('auth/editUser', 'Auth::editUser');
 
+// $routes->get('edit_user/(:num)', 'Auth::editUser/$1');
+
+//$routes->get('manage-users', 'Auth::manageUsers');
+//$routes->get('edit_user/(:num)', 'Auth::editUser/$1');
+
+
+
+//$routes->post('auth/restrictUser', 'Auth::restrictUser');
+//$routes->post('auth/restrict_user', 'Auth::restrictUser');
+
+//$routes->post('restrictUser', 'Auth::restrictUser');
+$routes->post('restrictUser', 'Auth::restrictUser');

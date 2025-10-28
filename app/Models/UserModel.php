@@ -17,8 +17,12 @@ class UserModel extends Model
         'email',
         'password',
         'role',
+        'status',
+        'is_deleted',
         'created_at',
         'updated_at',
+
+        
     ];
 
     protected $useTimestamps = false; // timestamps handled by DB defaults in migration

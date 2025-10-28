@@ -1,13 +1,22 @@
 <?= $this->extend('template') ?>
 <?= $this->section('content') ?>
 
-<h1>Welcome, <?= esc($name) ?>!</h1>
-<p>Email: <?= esc($email) ?></p>
+<!--  WELCOME SECTION WITH DEFAULT GRAY PROFILE ICON -->
+<div class="d-flex align-items-center mb-3">
+    <!-- Default Gray Profile Icon -->
+    <i class="bi bi-person-circle me-3" style="font-size: 80px; color: gray;"></i>
+
+    <!-- Name and Email -->
+    <div>
+        <h1 class="mb-1">Welcome, <?= ucfirst(esc($name)) ?>!</h1>
+        <p class="mb-0"><i class="bi bi-envelope-fill me-2"></i><?= esc($email) ?></p>
+    </div>
+</div>
 
 <?php if ($role === 'admin'): ?>
     <h2 class="mb-4 text-primary fw-bold">Admin Dashboard</h2>
 
-    <!-- 🔔 FLASH NOTIFICATIONS -->
+    <!--  FLASH NOTIFICATIONS -->
     <?php if (session()->getFlashdata('add_success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="bi bi-check-circle-fill me-2"></i><?= esc(session()->getFlashdata('add_success')) ?>
@@ -29,7 +38,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     <?php endif; ?>
-    <!-- 🔔 END FLASH -->
+    <!--  END FLASH -->
 
     <div class="row mt-4">
         <div class="col-md-3 mb-3">
@@ -66,7 +75,7 @@
         </div>
     </div>
 
-    <!-- ✅ User List Table -->
+    <!--  User List Table -->
     <div class="card mt-5 shadow-sm border-0">
         <div class="card-header d-flex align-items-center" style="background-color: #003366; color: white;">
             <i class="bi bi-list-ul fs-4 me-2"></i>
@@ -112,7 +121,7 @@
 
 
 <?php elseif ($role === 'teacher'): ?>
-    <!-- 🧑‍🏫 TEACHER DASHBOARD -->
+    <!--  TEACHER DASHBOARD -->
     <h2 class="mb-4 text-success fw-bold">Teacher Dashboard</h2>
 
     <div class="row mt-4">
@@ -169,7 +178,7 @@
 
 <?= $this->endSection() ?>
 
-<!-- ✨ Auto-hide alerts -->
+<!-- Auto-hide alerts -->
 <script>
     setTimeout(() => {
         document.querySelectorAll('.alert').forEach(a => a.classList.add('fade'));

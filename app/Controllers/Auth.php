@@ -5,46 +5,42 @@ namespace App\Controllers;
 use App\Models\UserModel;
 
 class Auth extends BaseController
-   
-{   
-
-        public function dashboard()
+{
+    // ========================= DASHBOARD =========================
+    public function dashboard()
     {
         $session = session();
-        
-    
 
-        // Authorization check
-        if (! $session->get('isLoggedIn')) {
+        // Check if user is logged in
+        if (!$session->get('isLoggedIn')) {
             return redirect()->to(base_url('login'))->with('login_error', 'Please log in first.');
         }
 
         $role = $session->get('role');
-
         $userModel = new UserModel();
 
-        
+        // Prepare data for dashboard
         $data = [
             'name' => $session->get('userName'),
             'email' => $session->get('userEmail'),
-            'role'  => $session->get('role'),
-            'currentUsers' =>  $userModel->countAllResults() ,
-            'admins' => $userModel->where('role', 'admin')->countAllResults(),
-            'teachers' =>  $userModel->where('role', 'teacher')->countAllResults(),
-            'students' => $userModel->where('role', 'student')->countAllResults(),
+            'role' => $role,
+            'currentUsers' => $userModel->where('is_deleted', 0)->countAllResults(),
+            'admins' => $userModel->where(['role' => 'admin', 'is_deleted' => 0])->countAllResults(),
+            'teachers' => $userModel->where(['role' => 'teacher', 'is_deleted' => 0])->countAllResults(),
+            'students' => $userModel->where(['role' => 'student', 'is_deleted' => 0])->countAllResults(),
             'courses' => 0,
             'myCourses' => 0,
             'myStudents' => 0,
             'enrolledCourses' => 0,
             'completedLessons' => 0,
-            'allUsers' => ($role === 'admin') ? $userModel->findAll() : []
-            
+            'allUsers' => ($role === 'admin') ? $userModel->where('is_deleted', 0)->findAll() : [],
         ];
 
         return view('auth/dashboard', $data);
     }
 
-        public function addRole()
+    // ========================= ADD ROLE =========================
+    public function addRole()
     {
         $session = session();
         if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
@@ -56,7 +52,6 @@ class Auth extends BaseController
             return redirect()->back()->with('error', 'Role name cannot be empty.');
         }
 
-        // For simulation — normally you'd save to DB
         $rolesFile = WRITEPATH . 'roles.json';
         $roles = file_exists($rolesFile) ? json_decode(file_get_contents($rolesFile), true) : ['admin', 'teacher', 'student'];
 
@@ -69,11 +64,7 @@ class Auth extends BaseController
         }
     }
 
-
-
-    /**
-     * Show Login Page
-     */
+    // ========================= LOGIN =========================
     public function login()
     {
         $session = session();
@@ -84,40 +75,11 @@ class Auth extends BaseController
         return view('login');
     }
 
-    /**
-     * Handle Login Attempt
-     */
-    public function attempt()
-    {
-        $request = $this->request;
-        $email = trim((string) $request->getPost('email'));
-        $password = (string) $request->getPost('password');
-
-        $userModel = new UserModel();
-        $user = $userModel->where('email', $email)->first();
-
-        if ($user && password_verify($password, $user['password'])) {
-            $session = session();
-            $session->set([
-                'isLoggedIn' => true,
-                'userEmail'  => $email,
-                'userName'   => $user['name'],
-                'role'       => $user['role'],                
-                
-            ]);
-
-            
-            return redirect()->to(base_url('dashboard'));
-        }
-
-        return redirect()->back()->with('login_error', 'Invalid credentials');
-    }
-
-    //     public function attempt()
+    // public function attempt()
     // {
     //     $request = $this->request;
-    //     $email = trim((string) $request->getPost('email'));
-    //     $password = (string) $request->getPost('password');
+    //     $email = trim((string)$request->getPost('email'));
+    //     $password = (string)$request->getPost('password');
 
     //     $userModel = new UserModel();
     //     $user = $userModel->where('email', $email)->first();
@@ -126,133 +88,133 @@ class Auth extends BaseController
     //         $session = session();
     //         $session->set([
     //             'isLoggedIn' => true,
-    //             'userEmail'  => $email,
-    //             'userName'   => $user['name'],
-    //             'role'       => $user['role'],
+    //             'userEmail' => $email,
+    //             'userName' => $user['name'],
+    //             'role' => $user['role'],
     //         ]);
 
-    //         // Role-based redirection
-    //         switch ($user['role']) {
-    //             case 'student':
-    //                 return redirect()->to(base_url('/announcements'));
-    //             case 'teacher':
-    //                 return redirect()->to(base_url('/teacher/dashboard'));
-    //             case 'admin':
-    //                 return redirect()->to(base_url('/admin/dashboard'));
-    //             default:
-    //                 return redirect()->to(base_url('/login'))->with('login_error', 'Invalid role.');
-    //         }
+    //         return redirect()->to(base_url('dashboard'));
     //     }
 
     //     return redirect()->back()->with('login_error', 'Invalid credentials');
     // }
 
-
-    /**
-     * Logout
-     */
-    public function logout()
+        public function attempt()
     {
-        $session = session();
-        $session->destroy();
-        return redirect()->to(base_url('login'));
-    }
+        $request = $this->request;
+        $email = trim((string)$request->getPost('email'));
+        $password = (string)$request->getPost('password');
 
-    /**
-     * Show Register Page
-     */
-    public function register()
-    {
-        $session = session();
-        if ($session->get('isLoggedIn')) {
+        $userModel = new UserModel();
+        $user = $userModel->where('email', $email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('login_error', 'Invalid credentials');
+        }
+
+        // Block deleted users
+        if ($user['is_deleted'] == 1) {
+            return redirect()->back()->with('login_error', 'Your account has been deleted.');
+        }
+
+        // Block restricted users
+        if (isset($user['status']) && $user['status'] === 'restricted') {
+            return redirect()->back()->with('login_error', 'Your account has been restricted.');
+        }
+
+        // Check password
+        if (password_verify($password, $user['password'])) {
+            $session = session();
+            $session->set([
+                'isLoggedIn' => true,
+                'userEmail' => $email,
+                'userName' => $user['name'],
+                'role' => $user['role'],
+            ]);
+
             return redirect()->to(base_url('dashboard'));
         }
 
+        return redirect()->back()->with('login_error', 'Invalid credentials');
+    }
+
+
+    // ========================= LOGOUT =========================
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to(base_url('login'));
+    }
+
+    // ========================= REGISTER =========================
+    public function register()
+    {
+        if (session()->get('isLoggedIn')) {
+            return redirect()->to(base_url('dashboard'));
+        }
 
         return view('register');
     }
 
-    /**
-     * Handle Registration
-     */
     public function store()
-
     {
         helper('html');
 
-        $name            = trim((string) $this->request->getPost('name'));
-        $email           = trim((string) $this->request->getPost('email'));
-        $password        = (string) $this->request->getPost('password');
-        $passwordConfirm = (string) $this->request->getPost('password_confirm');
-        $role            = (string) $this->request->getPost('role');
-
-        $name  = esc($name);
-        $email = esc($email);
-        
+        $name = esc(trim((string)$this->request->getPost('name')));
+        $email = esc(trim((string)$this->request->getPost('email')));
+        $password = (string)$this->request->getPost('password');
+        $passwordConfirm = (string)$this->request->getPost('password_confirm');
+        $role = (string)$this->request->getPost('role');
 
         // Validate required fields
         if ($name === '' || $email === '' || $password === '' || $passwordConfirm === '') {
             return redirect()->back()->withInput()->with('register_error', 'All fields are required.');
         }
 
-        // Validate invalid symbols in name (allow only letters, spaces, and basic punctuation)
+        // Name validation
         if (!preg_match('/^[a-zA-Z0-9\s.-]+$/', $name)) {
             return redirect()->back()->withInput()->with('register_error', 'Name contains invalid symbols.');
         }
 
-        // Validate invalid symbols in email (must be valid format and no extra symbols)
+        // Email validation
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/[\'"<>]/', $email)) {
-            return redirect()->back()->withInput()->with('register_error', 'Invalid email address or contains forbidden characters.');
+            return redirect()->back()->withInput()->with('register_error', 'Invalid email or forbidden characters.');
         }
 
-        // Validate password confirmation
+        // Password confirmation
         if ($password !== $passwordConfirm) {
             return redirect()->back()->withInput()->with('register_error', 'Passwords do not match.');
         }
 
-        // Reject password with single or double quotes
+        // Prevent quotes in password
         if (preg_match('/[\'"]/', $password)) {
-            return redirect()->back()->withInput()->with('register_error', 'Password cannot contain single or double quotation marks.');
+            return redirect()->back()->withInput()->with('register_error', 'Password cannot contain quotes.');
         }
 
         $userModel = new UserModel();
 
-        // Allow only one admin registration from outside
-        if ($role === 'admin') {
-            $existingAdmin = $userModel->where('role', 'admin')->first();
-            if ($existingAdmin) {
-                return redirect()->back()->withInput()
-                    ->with('register_error', 'Admin registration is closed. Please contact the system administrator.');
-            }
+        // Only one admin from registration
+        if ($role === 'admin' && $userModel->where('role', 'admin')->first()) {
+            return redirect()->back()->withInput()->with('register_error', 'Admin registration is closed.');
         }
 
-
-        // Check for existing email
+        // Prevent duplicate email
         if ($userModel->where('email', $email)->first()) {
-            return redirect()->back()->withInput()->with('register_error', 'Email is already registered.');
+            return redirect()->back()->withInput()->with('register_error', 'Email already registered.');
         }
 
         // Save user
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $userModel->insert([
+            'name' => $name,
+            'email' => $email,
+            'role' => $role,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+        ]);
 
-        $userId = $userModel->insert([
-            'name'     => $name,
-            'email'    => $email,
-            'role'     => $role,
-            'password' => $passwordHash,
-        ], true);
-
-        if (!$userId) {
-            return redirect()->back()->withInput()->with('register_error', 'Registration failed.');
-        }
-
-        return redirect()
-            ->to(base_url('login'))
-            ->with('register_success', 'Account created successfully. Please log in.');
+        return redirect()->to(base_url('login'))->with('register_success', 'Account created successfully.');
     }
-    
 
-    //ADDuserbyAdmin
+    // ========================= ADD USER BY ADMIN =========================
     public function addUserByAdmin()
     {
         $session = session();
@@ -261,122 +223,119 @@ class Auth extends BaseController
         }
 
         helper('html');
-        $name = trim((string) $this->request->getPost('name'));
-        $email = trim((string) $this->request->getPost('email'));
-        $password = (string) $this->request->getPost('password');
-        $passwordConfirm = (string) $this->request->getPost('password_confirm');
-        $role = (string) $this->request->getPost('role');
+        $name = esc(trim((string)$this->request->getPost('name')));
+        $email = esc(trim((string)$this->request->getPost('email')));
+        $password = (string)$this->request->getPost('password');
+        $passwordConfirm = (string)$this->request->getPost('password_confirm');
+        $role = (string)$this->request->getPost('role');
 
-        $name  = esc($name);
-        $email = esc($email);
-
-        // === VALIDATION (same as your register form) ===
         if ($name === '' || $email === '' || $password === '' || $passwordConfirm === '' || $role === '') {
             return redirect()->back()->withInput()->with('add_error', 'All fields are required.');
         }
 
-        if (!preg_match('/^[a-zA-Z0-9\s.-]+$/', $name)) {
-            return redirect()->back()->withInput()->with('add_error', 'Name contains invalid symbols.');
-        }
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/[\'"<>]/', $email)) {
-            return redirect()->back()->withInput()->with('add_error', 'Invalid email address or contains forbidden characters.');
-        }
+        $userModel = new UserModel();
 
         if ($password !== $passwordConfirm) {
             return redirect()->back()->withInput()->with('add_error', 'Passwords do not match.');
         }
 
-        if (preg_match('/[\'"]/', $password)) {
-            return redirect()->back()->withInput()->with('add_error', 'Password cannot contain single or double quotes.');
-        }
-
-        $userModel = new UserModel();
-
-        // Check for duplicate email
         if ($userModel->where('email', $email)->first()) {
             return redirect()->back()->withInput()->with('add_error', 'Email already exists.');
         }
 
-        // Insert user
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $userId = $userModel->insert([
+        $userModel->insert([
             'name' => $name,
             'email' => $email,
-            'password' => $passwordHash,
             'role' => $role,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
         ]);
 
-        if ($userId) {
-            return redirect()
-                // ->to(base_url('dashboard'))
-                ->to(base_url('manage-users'))
-                ->with('add_success', "New {$role} account '{$name}' added successfully!");
-        }
-
-        return redirect()->back()->withInput()->with('add_error', 'Failed to add user.');
+        return redirect()->to(base_url('manage-users'))->with('add_success', "New {$role} account '{$name}' added successfully!");
     }
 
+    // ========================= UPDATE USER ROLE =========================
     public function updateUserRole()
     {
-    $id = $this->request->getPost('id');
-    $role = $this->request->getPost('role');
-    $userModel = new UserModel();
+        $userModel = new UserModel();
+        $id = $this->request->getPost('id');
+        $name = $this->request->getPost('name');
+        $role = $this->request->getPost('role');
 
-    if ($id == 1) {
-        return redirect()->back()->with('error', 'Main admin cannot be modified.');
+        if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
+
+        $userModel->update($id, ['name' => $name, 'role' => $role]);
+
+        return redirect()->back()->with('success', "User '{$name}' updated successfully.");
     }
 
-    if (!in_array($role, ['admin', 'teacher', 'student'])) {
-        return redirect()->back()->with('error', 'Invalid role.');
-    }
-
-    $userModel->update($id, ['role' => $role]);
-    return redirect()->back()->with('success', 'User role updated successfully!');
-    }
-
+    // ========================= DELETE USER =========================
     public function deleteUser()
     {
         $id = $this->request->getPost('id');
         $userModel = new UserModel();
 
-        // Prevent deleting main admin
-        if ($id == 1) {
-            return redirect()->back()->with('error', 'Main admin cannot be deleted.');
-        }
+        if ($id == 1) return redirect()->back()->with('error', 'Cannot delete master admin.');
 
-        // Get user info before deleting
-        $user = $userModel->find($id);
+        $userModel->update($id, ['is_deleted' => 1]);
 
-        if (!$user) {
-            return redirect()->back()->with('error', 'User not found.');
-        }
-
-        // Delete user
-        $userModel->delete($id);
-
-        // Get name or email for message
-        $userName = $user['name'] ?? $user['email'] ?? 'Unknown User';
-
-        return redirect()->back()->with('success', "User '{$userName}' deleted successfully!");
+        return redirect()->back()->with('success', 'User deleted successfully.');
     }
 
-        public function manageUsers()
+    // ========================= RESTRICT USER =========================
+    public function restrictUser()
     {
         $session = session();
-        if (! $session->get('isLoggedIn') || $session->get('role') !== 'admin') {
+        if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
+            return redirect()->to(base_url('login'))->with('error', 'Access denied.');
+        }
+
+        $id = $this->request->getPost('id');
+        $userModel = new UserModel();
+
+        if ($id == 1) return redirect()->back()->with('error', 'Main admin cannot be restricted.');
+
+        $user = $userModel->find($id);
+        if (!$user) return redirect()->back()->with('error', 'User not found.');
+
+        $userModel->update($id, ['status' => 'restricted']);
+
+        return redirect()->to(base_url('manage-users'))->with('success', "User '{$user['name']}' has been restricted.");
+    }
+
+    // ========================= MANAGE USERS =========================
+    public function manageUsers()
+    {
+        $session = session();
+        if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
             return redirect()->to('login');
         }
 
-        $userModel = new \App\Models\UserModel();
+        $userModel = new UserModel();
         $data = [
-            'name' => $session->get('name'),
+            'name' => $session->get('userName'),
             'role' => $session->get('role'),
-            'allUsers' => $userModel->findAll(),
+            'allUsers' => $userModel->where('is_deleted', 0)->findAll(),
         ];
 
         return view('auth/manage_users', $data);
     }
 
+    // ========================= EDIT USER PAGE =========================
+    public function editUser($id)
+    {
+        $session = session();
+        if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
+            return redirect()->to(base_url('login'));
+        }
 
+        $userModel = new UserModel();
+        $user = $userModel->find($id);
+
+        if (!$user) return redirect()->to(base_url('manage-users'))->with('error', 'User not found.');
+
+        return view('auth/edit_user', [
+            'user' => $user,
+            'role' => $session->get('role'),
+        ]);
+    }
 }

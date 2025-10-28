@@ -5,15 +5,13 @@
     <i class="bi bi-gear-fill me-2"></i>Manage Users
 </h2>
 
-<!-- ✅ ADD NEW USER -->
+<!--  ADD NEW USER -->
 <div class="card mb-4 shadow-sm border-0">
     <div class="card-header d-flex align-items-center" style="background-color:#006400; color:white;">
         <i class="bi bi-person-plus-fill fs-5 me-2"></i>
         <h5 class="mb-0">Add New User</h5>
     </div>
     <div class="card-body">
-
-        <!-- 🔔 Flash Messages (Updated: Stay on same page, no redirect) -->
         <?php if (session()->getFlashdata('add_success')): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle-fill me-2"></i>
@@ -61,7 +59,7 @@
     </div>
 </div>
 
-<!-- ✅ MANAGE USER LIST -->
+<!--  MANAGE USER LIST -->
 <?php if ($role === 'admin' && !empty($allUsers)): ?>
 <div class="card shadow-sm border-0">
     <div class="card-header d-flex align-items-center" style="background-color:#003366; color:white;">
@@ -69,8 +67,6 @@
         <h5 class="mb-0">User List</h5>
     </div>
     <div class="card-body">
-
-        <!-- 🔔 Flash Messages for Updates/Deletes -->
         <?php if (session()->getFlashdata('success')): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle-fill me-2"></i><?= esc(session()->getFlashdata('success')) ?>
@@ -114,18 +110,29 @@
                         <td class="text-end">
                             <?php if ($user['id'] != $masterAdminId): ?>
                                 <div class="d-flex justify-content-end align-items-center gap-2">
-                                    <!-- 🔄 Update Role -->
-                                    <form action="<?= base_url('auth/updateUserRole') ?>" method="post" class="d-flex gap-2 m-0">
-                                        <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
-                                        <select name="role" class="form-select form-select-sm" style="width:110px;">
-                                            <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
-                                            <option value="teacher" <?= $user['role'] === 'teacher' ? 'selected' : '' ?>>Teacher</option>
-                                            <option value="student" <?= $user['role'] === 'student' ? 'selected' : '' ?>>Student</option>
-                                        </select>
-                                        <button type="submit" class="btn btn-sm btn-warning">Update</button>
+                                    <!--  EDIT BUTTON -->
+                                    <button 
+                                        class="btn btn-sm btn-warning btn-edit-user"
+                                        data-id="<?= $user['id'] ?>"
+                                        data-name="<?= esc($user['name']) ?>"
+                                        data-email="<?= esc($user['email']) ?>"
+                                        data-role="<?= esc($user['role']) ?>"
+                                    >
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </button>
+
+                                    <!--  RESTRICT -->
+                                    <form action="<?= base_url('restrictUser') ?>" method="post" class="d-inline">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                        <button type="submit" class="btn btn-sm btn-secondary"
+                                            onclick="return confirm('Restrict this user?')">
+                                            <i class="bi bi-lock"></i> Restrict
+                                        </button>
                                     </form>
 
-                                    <!-- ❌ Delete -->
+
+                                    <!--  DELETE -->
                                     <form action="<?= base_url('auth/deleteUser') ?>" method="post" 
                                           onsubmit="return confirm('Are you sure you want to delete this user?')" class="m-0">
                                         <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
