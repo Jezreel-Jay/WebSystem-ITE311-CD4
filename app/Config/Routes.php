@@ -32,6 +32,8 @@ $routes->post('/login', 'Auth::attempt');
 $routes->get('/logout', 'Auth::logout');
 //$routes->get('/dashboard', 'Home::dashboard');
 $routes->get('/dashboard', 'Auth::dashboard');
+$routes->get('dashboard', 'Auth::dashboard');
+
 // Registration
 $routes->get('/register', 'Auth::register');
 $routes->post('/register', 'Auth::store');
@@ -43,20 +45,15 @@ $routes->post('auth/deleteUser', 'Auth::deleteUser');
 //$routes->post('auth/updateUserRole', 'Auth::updateUserRole');
 
 $routes->get('manage-users', 'Auth::manageUsers');
-
-// // dasdasdasd
-// $routes->post('auth/restrictUser', 'Auth::restrictUser');
-// $routes->post('auth/editUser', 'Auth::editUser');
-
-// $routes->get('edit_user/(:num)', 'Auth::editUser/$1');
-
-//$routes->get('manage-users', 'Auth::manageUsers');
-//$routes->get('edit_user/(:num)', 'Auth::editUser/$1');
-
-
-
-//$routes->post('auth/restrictUser', 'Auth::restrictUser');
-//$routes->post('auth/restrict_user', 'Auth::restrictUser');
-
-//$routes->post('restrictUser', 'Auth::restrictUser');
 $routes->post('restrictUser', 'Auth::restrictUser');
+
+
+
+$routes->get('restricted-users', 'Auth::restrictedUsers');
+$routes->post('auth/unrestrictUser', 'Auth::unrestrictUser');
+$routes->post('auth/deleteUserPermanent', 'Auth::deleteUserPermanent');
+
+
+
+$routes->get('settings', 'Auth::settings');
+$routes->post('auth/updateSettings', 'Auth::updateSettings');

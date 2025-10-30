@@ -1,39 +1,61 @@
 <?= $this->extend('template') ?>
 <?= $this->section('content') ?>
 
-<h2 class="text-primary fw-bold mb-4">
-    <i class="bi bi-gear-fill me-2"></i>Manage Users
+<h2 class="text-primary fw-bold mb-4 d-flex justify-content-between align-items-center">
+    <div>
+        <i class="bi bi-gear-fill me-2"></i>Manage Users
+    </div>
+    <div class="d-flex gap-2">
+        <!-- Add New User Button -->
+        <button class="btn btn-success" id="toggleAddUser">
+            <i class="bi bi-person-plus-fill"></i> Add New User
+        </button>
+
+        <!-- View Restricted Users Button -->
+        <a href="<?= base_url('restricted-users') ?>" class="btn btn-secondary">
+            <i class="bi bi-eye-fill"></i> View Restricted Users
+        </a>
+    </div>
 </h2>
 
-<!--  ADD NEW USER -->
-<div class="card mb-4 shadow-sm border-0">
+<!-- ADD NEW USER FORM -->
+<?php 
+$showAddForm = session()->getFlashdata('add_error') ? 'block' : 'none';
+?>
+<div id="addUserForm" class="card mb-4 shadow-sm border-0" style="display:<?= $showAddForm ?>;">
     <div class="card-header d-flex align-items-center" style="background-color:#006400; color:white;">
         <i class="bi bi-person-plus-fill fs-5 me-2"></i>
         <h5 class="mb-0">Add New User</h5>
     </div>
     <div class="card-body">
-        <?php if (session()->getFlashdata('add_success')): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle-fill me-2"></i>
-                <?= esc(session()->getFlashdata('add_success')) ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        <?php elseif (session()->getFlashdata('add_error')): ?>
+        <!--  Add User Alerts -->
+        <?php if (session()->getFlashdata('add_error')): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
                 <?= esc(session()->getFlashdata('add_error')) ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
+        <?php elseif (session()->getFlashdata('add_success')): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <?= esc(session()->getFlashdata('add_success')) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
         <?php endif; ?>
 
         <form action="<?= base_url('auth/addUserByAdmin') ?>" method="post" class="row g-3">
+            <?= csrf_field() ?>
             <div class="col-md-3">
                 <label class="form-label fw-bold">Name</label>
-                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                <input type="text" name="name" class="form-control" placeholder="Full Name" required
+                       value="<?= old('name') ?>"
+                       pattern="^[a-zA-Z\s'.-]+$"
+                       title="Letters, spaces, period, dash, and apostrophe only.">
             </div>
             <div class="col-md-3">
                 <label class="form-label fw-bold">Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                <input type="email" name="email" class="form-control" placeholder="Email" required
+                       value="<?= old('email') ?>">
             </div>
             <div class="col-md-2">
                 <label class="form-label fw-bold">Password</label>
@@ -47,9 +69,9 @@
                 <label class="form-label fw-bold">Role</label>
                 <select name="role" class="form-select" required>
                     <option value="">Select</option>
-                    <option value="admin">Admin</option>
-                    <option value="teacher">Teacher</option>
-                    <option value="student">Student</option>
+                    <option value="admin" <?= old('role') === 'admin' ? 'selected' : '' ?>>Admin</option>
+                    <option value="teacher" <?= old('role') === 'teacher' ? 'selected' : '' ?>>Teacher</option>
+                    <option value="student" <?= old('role') === 'student' ? 'selected' : '' ?>>Student</option>
                 </select>
             </div>
             <div class="col-12 text-end">
@@ -59,17 +81,20 @@
     </div>
 </div>
 
-<!--  MANAGE USER LIST -->
+<!-- USER LIST -->
 <?php if ($role === 'admin' && !empty($allUsers)): ?>
-<div class="card shadow-sm border-0">
+<div class="card shadow-sm border-0 mt-4">
     <div class="card-header d-flex align-items-center" style="background-color:#003366; color:white;">
         <i class="bi bi-list-ul fs-5 me-2"></i>
         <h5 class="mb-0">User List</h5>
     </div>
-    <div class="card-body">
-        <?php if (session()->getFlashdata('success')): ?>
+
+    <!--  User List Alerts -->
+    <div class="p-3">
+        <?php if (session()->getFlashdata('success') || session()->getFlashdata('add_success')): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle-fill me-2"></i><?= esc(session()->getFlashdata('success')) ?>
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <?= esc(session()->getFlashdata('success') ?? session()->getFlashdata('add_success')) ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         <?php elseif (session()->getFlashdata('error')): ?>
@@ -78,7 +103,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         <?php endif; ?>
+    </div>
 
+    <div class="card-body pt-0">
         <table class="table table-bordered table-striped align-middle">
             <thead style="background-color:#0d47a1; color:white;">
                 <tr>
@@ -86,12 +113,13 @@
                     <th style="width:180px;">Name</th>
                     <th style="width:240px;">Email</th>
                     <th style="width:130px;">Role</th>
-                    <th style="width:260px;" class="text-center">Actions</th>
+                    <th style="width:200px;" class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php $masterAdminId = 1; ?>
                 <?php foreach ($allUsers as $user): ?>
+                    <?php if ($user['status'] !== 'restricted'): ?>
                     <tr>
                         <td><?= esc($user['id']) ?></td>
                         <td><?= esc($user['name']) ?></td>
@@ -110,33 +138,22 @@
                         <td class="text-end">
                             <?php if ($user['id'] != $masterAdminId): ?>
                                 <div class="d-flex justify-content-end align-items-center gap-2">
-                                    <!--  EDIT BUTTON -->
                                     <button 
                                         class="btn btn-sm btn-warning btn-edit-user"
-                                        data-id="<?= $user['id'] ?>"
+                                        data-id="<?= esc($user['id']) ?>"
                                         data-name="<?= esc($user['name']) ?>"
                                         data-email="<?= esc($user['email']) ?>"
-                                        data-role="<?= esc($user['role']) ?>"
-                                    >
+                                        data-role="<?= esc($user['role']) ?>">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </button>
 
-                                    <!--  RESTRICT -->
                                     <form action="<?= base_url('restrictUser') ?>" method="post" class="d-inline">
                                         <?= csrf_field() ?>
-                                        <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                        <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
                                         <button type="submit" class="btn btn-sm btn-secondary"
                                             onclick="return confirm('Restrict this user?')">
                                             <i class="bi bi-lock"></i> Restrict
                                         </button>
-                                    </form>
-
-
-                                    <!--  DELETE -->
-                                    <form action="<?= base_url('auth/deleteUser') ?>" method="post" 
-                                          onsubmit="return confirm('Are you sure you want to delete this user?')" class="m-0">
-                                        <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                     </form>
                                 </div>
                             <?php else: ?>
@@ -144,11 +161,20 @@
                             <?php endif; ?>
                         </td>
                     </tr>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
 <?php endif; ?>
+
+<!-- Toggle Add User Form -->
+<script>
+document.getElementById('toggleAddUser').addEventListener('click', function() {
+    const form = document.getElementById('addUserForm');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+});
+</script>
 
 <?= $this->endSection() ?>

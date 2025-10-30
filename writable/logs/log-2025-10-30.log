@@ -1,0 +1,186 @@
+CRITICAL - 2025-10-30 09:27:19 --> ErrorException: Undefined variable $viewType
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 9.
+ 1 APPPATH\Views\auth\manage_users.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $viewType', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 9)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(411): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 09:27:21 --> ErrorException: Undefined variable $viewType
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 9.
+ 1 APPPATH\Views\auth\manage_users.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $viewType', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 9)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(411): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 09:27:22 --> ErrorException: Undefined variable $viewType
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 9.
+ 1 APPPATH\Views\auth\manage_users.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $viewType', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 9)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(411): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 09:27:23 --> ErrorException: Undefined variable $viewType
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 9.
+ 1 APPPATH\Views\auth\manage_users.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $viewType', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 9)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(411): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 09:27:23 --> ErrorException: Undefined variable $viewType
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 9.
+ 1 APPPATH\Views\auth\manage_users.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $viewType', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 9)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(411): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 09:27:24 --> ErrorException: Undefined variable $viewType
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 9.
+ 1 APPPATH\Views\auth\manage_users.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $viewType', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 9)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(411): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 09:27:31 --> ErrorException: Undefined variable $viewType
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 9.
+ 1 APPPATH\Views\auth\manage_users.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $viewType', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 9)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(411): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 10:11:54 --> ErrorException: Undefined variable $page
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 4.
+ 1 APPPATH\Views\auth\manage_users.php(4): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $page', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 4)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(456): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 10:12:01 --> ErrorException: Undefined variable $page
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 4.
+ 1 APPPATH\Views\auth\manage_users.php(4): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $page', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 4)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(456): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 12:06:10 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth/settings.php"
+[Method: GET, Route: settings]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth/settings.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/settings', [], true)
+ 3 APPPATH\Controllers\Auth.php(511): view('auth/settings')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->settings()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 12:06:14 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth/settings.php"
+[Method: GET, Route: settings]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth/settings.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/settings', [], true)
+ 3 APPPATH\Controllers\Auth.php(511): view('auth/settings')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->settings()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 12:07:45 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth/settings.php"
+[Method: GET, Route: settings]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth/settings.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/settings', [], true)
+ 3 APPPATH\Controllers\Auth.php(511): view('auth/settings')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->settings()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 12:09:02 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth/settings.php"
+[Method: GET, Route: settings]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth/settings.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/settings', [], true)
+ 3 APPPATH\Controllers\Auth.php(509): view('auth/settings')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->settings()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-10-30 12:11:39 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "auth/settings.php"
+[Method: GET, Route: settings]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(214): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('auth/settings.php')
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/settings', [], true)
+ 3 APPPATH\Controllers\Auth.php(509): view('auth/settings')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->settings()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

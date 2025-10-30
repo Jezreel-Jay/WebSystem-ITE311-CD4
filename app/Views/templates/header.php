@@ -46,26 +46,35 @@ $uri = uri_string();
                         </li>
                     <?php endforeach; ?>
 
-                    <!-- ===== NEW: Account Dropdown ===== -->
+                    <!-- ===== ACCOUNT DROPDOWN (WIDER) ===== -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center text-white" 
                            href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                            style="gap: 6px;">
-                            <!-- Small Default Profile Icon -->
                             <i class="bi bi-person-circle fs-5" style="color: gray;"></i>
                             Account
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                            <li><a class="dropdown-item" href="<?= base_url('settings') ?>"><i class="bi bi-gear me-2"></i>Settings</a></li>
+
+                        <!--  Added 'min-width' to make dropdown slightly wider -->
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown" style="min-width: 220px;">
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url('settings') ?>">
+                                    <i class="bi bi-gear me-2"></i>Settings
+                                </a>
+                            </li>
+
+                            <!-- Removed Dark Mode toggle from dropdown -->
+
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>" 
+                            <li>
+                                <a class="dropdown-item text-danger" href="<?= base_url('logout') ?>" 
                                    onclick="return confirm('Are you sure you want to log out?');">
                                    <i class="bi bi-box-arrow-right me-2"></i>Logout
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <!-- ===== END Account Dropdown ===== -->
+                    <!-- ===== END ACCOUNT DROPDOWN ===== -->
 
                 <?php endif; ?>
 

@@ -11,6 +11,7 @@
             background: #f5f5f5; 
             font-family: "Poppins", sans-serif; 
             color: #000; 
+            transition: all 0.3s ease-in-out;
         }
 
         .main-container {
@@ -45,7 +46,6 @@
 
         .dashboard-card { margin-bottom: 20px; }
 
-        /*  Cleaner text styling */
         label.form-label {
             font-weight: 600;
             color: #1a1a1a;
@@ -58,13 +58,49 @@
             margin-top: 4px;
         }
 
-        .modal-content {
-            border-radius: 12px;
+        .modal-content { border-radius: 12px; }
+        .modal-header { border-bottom: 2px solid #ffc107; }
+
+        /*  DARK MODE STYLES */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f5f5f5;
         }
 
-        .modal-header {
-            border-bottom: 2px solid #ffc107;
+        body.dark-mode .navbar {
+            background-color: #2e0854 !important; /* very dark violet */
         }
+
+        body.dark-mode .main-container {
+            background-color: #1e1e2f;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(255,255,255,0.2);
+        }
+
+        body.dark-mode .form-label {
+            color: #ddd;
+        }
+
+        body.dark-mode .form-control,
+        body.dark-mode .form-select {
+            background-color: #2a2a3b;
+            color: #fff;
+            border: 1px solid #444;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background-color: #2a2a3b;
+            color: #fff;
+        }
+
+        body.dark-mode .dropdown-item {
+            color: #fff;
+        }
+
+        body.dark-mode .dropdown-item:hover {
+            background-color: #3b3b52;
+        }
+        /*  END DARK MODE */
     </style>
 </head>
 <body class="<?php 
@@ -78,7 +114,7 @@
         <?= $this->renderSection('content') ?>
     </div>
 
-<!--  Edit User Modal -->
+<!-- Edit User Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
@@ -93,21 +129,18 @@
                 <div class="modal-body">
                     <input type="hidden" name="id" id="editUserId">
 
-                    <!-- Full Name -->
                     <div class="mb-3">
-                        <label class="form-label">Full Name <span class="text-danger"></span></label>
+                        <label class="form-label">Full Name</label>
                         <input type="text" name="name" class="form-control" id="editUserName" required>
                         <div class="form-text-custom">This name serves as your display name.</div>
                     </div>
 
-                    <!-- Email -->
                     <div class="mb-3">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-control" id="editUserEmail" disabled>
                         <div class="form-text-custom">Email cannot be changed.</div>
                     </div>
 
-                    <!-- Role -->
                     <div class="mb-3">
                         <label class="form-label">Role</label>
                         <select name="role" class="form-select" id="editUserRole">
@@ -127,25 +160,46 @@
     </div>
 </div>
 
-<!--  Script for Modal -->
+<!--  DARK MODE SCRIPT -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const editButtons = document.querySelectorAll('.btn-edit-user');
-        editButtons.forEach(btn => {
-            btn.addEventListener('click', function () {
-                const id = this.dataset.id;
-                const name = this.dataset.name;
-                const email = this.dataset.email;
-                const role = this.dataset.role;
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
 
-                document.getElementById('editUserId').value = id;
-                document.getElementById('editUserName').value = name;
-                document.getElementById('editUserEmail').value = email;
-                document.getElementById('editUserRole').value = role;
+    // Apply saved mode
+    if (localStorage.getItem('darkMode') === 'true') {
+        body.classList.add('dark-mode');
+        if (toggle) toggle.checked = true;
+    }
 
-                const modal = new bootstrap.Modal(document.getElementById('editUserModal'));
-                modal.show();
-            });
+    // Toggle mode
+    if (toggle) {
+        toggle.addEventListener('change', function () {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        });
+    }
+
+    // Existing modal code
+    const editButtons = document.querySelectorAll('.btn-edit-user');
+    editButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.dataset.id;
+            const name = this.dataset.name;
+            const email = this.dataset.email;
+            const role = this.dataset.role;
+
+            document.getElementById('editUserId').value = id;
+            document.getElementById('editUserName').value = name;
+            document.getElementById('editUserEmail').value = email;
+            document.getElementById('editUserRole').value = role;
+
+            const modal = new bootstrap.Modal(document.getElementById('editUserModal'));
+            modal.show();
         });
     });
+});
 </script>
+
+</body>
+</html>

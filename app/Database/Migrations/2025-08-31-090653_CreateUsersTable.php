@@ -17,21 +17,32 @@ class CreateUsersTable extends Migration
             ],
             'name' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '100',
+                'constraint' => 100,
             ],
             'email' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '150',
+                'constraint' => 150,
                 'unique'     => true,
             ],
             'password' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'constraint' => 255,
             ],
             'role' => [
-                'type'       => 'ENUM("student","admin")',
+                'type'       => 'ENUM("student","teacher","admin")',
                 'default'    => 'student',
-
+            ],
+            // added 2 columns
+            'is_deleted' => [
+                'type'       => 'TINYINT',
+                'constraint' => 1,
+                'default'    => 0,
+            ],
+            'status' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 20,
+                'default'    => 'active',
+                // ended 2 columns
             ],
             'created_at' => [
                 'type'    => 'DATETIME',
@@ -39,11 +50,10 @@ class CreateUsersTable extends Migration
             ],
             'updated_at' => [
                 'type'    => 'DATETIME',
-                'null'    => true,
-                'default' => null,
-                'on_update' => new RawSql('CURRENT_TIMESTAMP'),
+                'default' => new RawSql('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
             ],
         ]);
+
         $this->forge->addKey('id', true);
         $this->forge->createTable('users');
     }

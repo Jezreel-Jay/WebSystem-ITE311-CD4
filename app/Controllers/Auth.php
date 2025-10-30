@@ -132,6 +132,8 @@ class Auth extends BaseController
                 'role' => $user['role'],
             ]);
 
+            
+
             return redirect()->to(base_url('dashboard'));
         }
 
@@ -214,8 +216,46 @@ class Auth extends BaseController
         return redirect()->to(base_url('login'))->with('register_success', 'Account created successfully.');
     }
 
-    // ========================= ADD USER BY ADMIN =========================
-    public function addUserByAdmin()
+    // // ========================= ADD USER BY ADMIN =========================
+    // public function addUserByAdmin()
+    // {
+    //     $session = session();
+    //     if ($session->get('role') !== 'admin') {
+    //         return redirect()->to(base_url('dashboard'))->with('add_error', 'Access denied.');
+    //     }
+
+    //     helper('html');
+    //     $name = esc(trim((string)$this->request->getPost('name')));
+    //     $email = esc(trim((string)$this->request->getPost('email')));
+    //     $password = (string)$this->request->getPost('password');
+    //     $passwordConfirm = (string)$this->request->getPost('password_confirm');
+    //     $role = (string)$this->request->getPost('role');
+
+    //     if ($name === '' || $email === '' || $password === '' || $passwordConfirm === '' || $role === '') {
+    //         return redirect()->back()->withInput()->with('add_error', 'All fields are required.');
+    //     }
+
+    //     $userModel = new UserModel();
+
+    //     if ($password !== $passwordConfirm) {
+    //         return redirect()->back()->withInput()->with('add_error', 'Passwords do not match.');
+    //     }
+
+    //     if ($userModel->where('email', $email)->first()) {
+    //         return redirect()->back()->withInput()->with('add_error', 'Email already exists.');
+    //     }
+
+    //     $userModel->insert([
+    //         'name' => $name,
+    //         'email' => $email,
+    //         'role' => $role,
+    //         'password' => password_hash($password, PASSWORD_DEFAULT),
+    //     ]);
+
+    //     return redirect()->to(base_url('manage-users'))->with('add_success', "New {$role} account '{$name}' added successfully!");
+    // }
+
+        public function addUserByAdmin()
     {
         $session = session();
         if ($session->get('role') !== 'admin') {
@@ -229,20 +269,39 @@ class Auth extends BaseController
         $passwordConfirm = (string)$this->request->getPost('password_confirm');
         $role = (string)$this->request->getPost('role');
 
+        //  Required fields
         if ($name === '' || $email === '' || $password === '' || $passwordConfirm === '' || $role === '') {
             return redirect()->back()->withInput()->with('add_error', 'All fields are required.');
         }
 
-        $userModel = new UserModel();
+        //  Name validation (no symbols)
+        if (!preg_match('/^[a-zA-Z0-9\s.-]+$/', $name)) {
+            return redirect()->back()->withInput()->with('add_error', 'Name contains invalid symbols.');
+        }
 
+        //  Email validation (valid format + no quotes or < >)
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/[\'"<>]/', $email)) {
+            return redirect()->back()->withInput()->with('add_error', 'Invalid email or forbidden characters.');
+        }
+
+        //  Password match
         if ($password !== $passwordConfirm) {
             return redirect()->back()->withInput()->with('add_error', 'Passwords do not match.');
         }
 
+        //  Password validation (no single or double quotes)
+        if (preg_match('/[\'"]/', $password)) {
+            return redirect()->back()->withInput()->with('add_error', 'Password cannot contain single or double quotes.');
+        }
+
+        $userModel = new UserModel();
+
+        //  Prevent duplicate email
         if ($userModel->where('email', $email)->first()) {
             return redirect()->back()->withInput()->with('add_error', 'Email already exists.');
         }
 
+        //  Save user
         $userModel->insert([
             'name' => $name,
             'email' => $email,
@@ -252,6 +311,7 @@ class Auth extends BaseController
 
         return redirect()->to(base_url('manage-users'))->with('add_success', "New {$role} account '{$name}' added successfully!");
     }
+
 
     // ========================= UPDATE USER ROLE =========================
     public function updateUserRole()
@@ -276,13 +336,33 @@ class Auth extends BaseController
 
         if ($id == 1) return redirect()->back()->with('error', 'Cannot delete master admin.');
 
-        $userModel->update($id, ['is_deleted' => 1]);
+        $userModel->update($id, ['is_deleted' => 1, 'status' => 'deleted']);
 
         return redirect()->back()->with('success', 'User deleted successfully.');
     }
 
     // ========================= RESTRICT USER =========================
-    public function restrictUser()
+    // public function restrictUser()
+    // {
+    //     $session = session();
+    //     if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
+    //         return redirect()->to(base_url('login'))->with('error', 'Access denied.');
+    //     }
+
+    //     $id = $this->request->getPost('id');
+    //     $userModel = new UserModel();
+
+    //     if ($id == 1) return redirect()->back()->with('error', 'Main admin cannot be restricted.');
+
+    //     $user = $userModel->find($id);
+    //     if (!$user) return redirect()->back()->with('error', 'User not found.');
+
+    //     $userModel->update($id, ['status' => 'restricted']);
+
+    //     return redirect()->to(base_url('manage-users'))->with('success', "User '{$user['name']}' has been restricted.");
+    // }
+
+        public function restrictUser()
     {
         $session = session();
         if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
@@ -292,15 +372,75 @@ class Auth extends BaseController
         $id = $this->request->getPost('id');
         $userModel = new UserModel();
 
-        if ($id == 1) return redirect()->back()->with('error', 'Main admin cannot be restricted.');
+        if ($id == 1) {
+            return redirect()->back()->with('error', 'Main admin cannot be restricted.');
+        }
 
         $user = $userModel->find($id);
-        if (!$user) return redirect()->back()->with('error', 'User not found.');
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
 
         $userModel->update($id, ['status' => 'restricted']);
 
-        return redirect()->to(base_url('manage-users'))->with('success', "User '{$user['name']}' has been restricted.");
+        //  Handles both array or object
+        $userName = is_array($user) ? $user['name'] : $user->name;
+
+        return redirect()->to(base_url('manage-users'))
+            ->with('success', "User '{$userName}' has been restricted.");
+        
+        
     }
+
+
+    // ========================= VIEW RESTRICTED USERS =========================
+public function restrictedUsers()
+{
+    $session = session();
+    if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
+        return redirect()->to('login');
+    }
+
+    $userModel = new UserModel();
+    $data = [
+        'name' => $session->get('userName'),
+        'role' => $session->get('role'),
+        'restrictedUsers' => $userModel->where('status', 'restricted')->where('is_deleted', 0)->findAll(),
+    ];
+
+    return view('auth/restricted_users', $data);
+}
+
+// ========================= UNRESTRICT USER =========================
+public function unrestrictUser()
+{
+    $id = $this->request->getPost('id');
+    $userModel = new UserModel();
+    $user = $userModel->find($id);
+
+    if (!$user) return redirect()->back()->with('error', 'User not found.');
+
+
+    $userName = is_array($user) ? $user['name'] : $user->name;
+    
+    $userModel->update($id, ['status' => null]);
+    return redirect()->back()->with('success', "User '{$user['name']}' unrestricted successfully.");
+}
+
+// ========================= DELETE USER PERMANENTLY =========================
+public function deleteUserPermanent()
+{
+    $id = $this->request->getPost('id');
+    $userModel = new UserModel();
+    
+    if ($id == 1) return redirect()->back()->with('error', 'Cannot delete master admin.');
+
+
+    $userModel->delete($id, true);
+    return redirect()->back()->with('success', 'User permanently deleted.');
+}
+
+
 
     // ========================= MANAGE USERS =========================
     public function manageUsers()
@@ -320,6 +460,24 @@ class Auth extends BaseController
         return view('auth/manage_users', $data);
     }
 
+        public function manage_users()
+    {
+        $userModel = new UserModel();
+        $viewType = $this->request->getGet('view');
+
+        if ($viewType === 'restricted') {
+            $data['users'] = $userModel->where('status', 'restricted')->findAll();
+            $data['viewType'] = 'restricted';
+        } else {
+            $data['users'] = $userModel->where('status', 'active')->findAll();
+            $data['viewType'] = 'active';
+        }
+
+        $data['role'] = session()->get('role');
+        return view('auth/manage_users', $data);
+    }
+
+
     // ========================= EDIT USER PAGE =========================
     public function editUser($id)
     {
@@ -338,4 +496,20 @@ class Auth extends BaseController
             'role' => $session->get('role'),
         ]);
     }
+
+    
+    public function settings()
+    {
+        $session = session();
+
+        if (!$session->get('isLoggedIn')) {
+            return redirect()->to(base_url('login'))->with('login_error', 'Please log in first.');
+        }
+
+        // Path matches file location
+        return view('auth/settings');
+    }
+
+
+    
 }
