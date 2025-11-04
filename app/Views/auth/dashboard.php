@@ -104,6 +104,14 @@
                                             ($user['role'] === 'teacher' ? 'bg-success' : 'bg-info') ?>">
                                         <?= ucfirst(esc($user['role'])) ?>
                                     </span>
+
+
+                                    <?php if (isset($user['status']) && $user['status'] === 'restricted'): ?>
+                                        <span class="text-secondary position-absolute end-0 me-3">
+                                            Restricted
+                                        </span>
+                                    <?php endif; ?>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -427,20 +427,38 @@ public function unrestrictUser()
     return redirect()->back()->with('success', "User '{$user['name']}' unrestricted successfully.");
 }
 
-// ========================= DELETE USER PERMANENTLY =========================
-public function deleteUserPermanent()
-{
-    $id = $this->request->getPost('id');
-    $userModel = new UserModel();
+//========================= DELETE USER PERMANENTLY =========================
+// public function deleteUserPermanent()
+// {
+//     $id = $this->request->getPost('id');
+//     $userModel = new UserModel();
     
-    if ($id == 1) return redirect()->back()->with('error', 'Cannot delete master admin.');
+//     if ($id == 1) return redirect()->back()->with('error', 'Cannot delete master admin.');
 
 
-    $userModel->delete($id, true);
-    return redirect()->back()->with('success', 'User permanently deleted.');
-}
+//     $userModel->delete($id, true);
+//     return redirect()->back()->with('success', 'User permanently deleted.');
+// }
+        public function deleteUserPermanent()
+    {
+        $id = $this->request->getPost('id');
+        $userModel = new UserModel();
 
+        if ($id == 1) {
+            return redirect()->back()->with('error', 'Cannot delete master admin.');
+        }
 
+        $user = $userModel->find($id);
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
+        //  Mark as deleted instead of removing from DB
+        $userModel->update($id, ['is_deleted' => 1]);
+
+        return redirect()->back()->with('success', 'User permanently deleted.');
+    }
+    
 
     // ========================= MANAGE USERS =========================
     public function manageUsers()

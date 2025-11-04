@@ -35,6 +35,10 @@ $uri = uri_string();
                     } elseif ($role === 'student') {
                         $links = ['dashboard' => 'Dashboard'];
                     }
+
+                        if ($uri === 'restricted-users') {
+                        $uri = 'manage-users';
+                    }
                     ?>
 
                     <?php foreach ($links as $path => $label): ?>

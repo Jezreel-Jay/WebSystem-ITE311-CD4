@@ -6,7 +6,7 @@
         <i class="bi bi-lock-fill me-2"></i>Restricted Users
     </div>
     <a href="<?= base_url('manage-users') ?>" class="btn btn-dark">
-        <i class="bi bi-arrow-left-circle"></i> Back to Manage Users
+        <i class="bi bi-arrow-left-circle"></i> Back
     </a>
 </h2>
 
