@@ -130,6 +130,8 @@ class Auth extends BaseController
                 'userEmail' => $email,
                 'userName' => $user['name'],
                 'role' => $user['role'],
+                'userId' => $user['id'],
+                'userPasswordHash' => $user['password'],
             ]);
 
             
@@ -314,19 +316,50 @@ class Auth extends BaseController
 
 
     // ========================= UPDATE USER ROLE =========================
-    public function updateUserRole()
+    // public function updateUserRole()
+    // {
+    //     $userModel = new UserModel();
+    //     $id = $this->request->getPost('id');
+    //     $name = $this->request->getPost('name');
+    //     $role = $this->request->getPost('role');
+
+    //     if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
+
+    //     $userModel->update($id, ['name' => $name, 'role' => $role]);
+
+    //     return redirect()->back()->with('success', "User '{$name}' updated successfully.");
+    // }
+
+        public function updateUserRole()
     {
         $userModel = new UserModel();
         $id = $this->request->getPost('id');
         $name = $this->request->getPost('name');
         $role = $this->request->getPost('role');
+        $newPassword = $this->request->getPost('password'); // from modal
 
         if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
 
-        $userModel->update($id, ['name' => $name, 'role' => $role]);
+        $updateData = [
+            'name' => $name,
+            'role' => $role
+        ];
+
+        // Only update password if user typed something
+        if (!empty($newPassword)) {
+            // Check no single/double quotes
+            if (preg_match('/[\'"]/', $newPassword)) {
+                return redirect()->back()->with('error', 'Password cannot contain quotes.');
+            }
+
+            $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+        }
+
+        $userModel->update($id, $updateData);
 
         return redirect()->back()->with('success', "User '{$name}' updated successfully.");
     }
+
 
     // ========================= DELETE USER =========================
     public function deleteUser()
@@ -526,6 +559,33 @@ public function unrestrictUser()
 
         // Path matches file location
         return view('auth/settings');
+    }
+
+    public function resetPassword()
+    {
+        $id = $this->request->getPost('id');
+        $newPassword = $this->request->getPost('new_password');
+
+        if (!$id || !$newPassword) {
+            return redirect()->back()->with('error', 'Invalid input.');
+        }
+
+        // Validate password (no quotes)
+        if (preg_match('/[\'"]/', $newPassword)) {
+            return redirect()->back()->with('error', 'Password cannot contain quotes.');
+        }
+
+        $userModel = new UserModel();
+        $user = $userModel->find($id);
+        if (!$user) return redirect()->back()->with('error', 'User not found.');
+
+        // Update password in database
+        $userModel->update($id, [
+            'password' => password_hash($newPassword, PASSWORD_DEFAULT),
+            'status' => 'active'  
+        ]);
+
+        return redirect()->back()->with('success', "Password reset successfully for {$user['name']}.");
     }
 
 

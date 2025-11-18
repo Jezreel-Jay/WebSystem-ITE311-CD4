@@ -1,0 +1,150 @@
+CRITICAL - 2025-11-18 11:56:59 --> ParseError: syntax error, unexpected token ":"
+[Method: GET, Route: dashboard]
+in APPPATH\Views\auth\dashboard.php on line 116.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/dashboard', [], true)
+ 3 APPPATH\Controllers\Auth.php(39): view('auth/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-18 11:57:06 --> ParseError: syntax error, unexpected token ":"
+[Method: GET, Route: dashboard]
+in APPPATH\Views\auth\dashboard.php on line 116.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/dashboard', [], true)
+ 3 APPPATH\Controllers\Auth.php(39): view('auth/dashboard', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-11-18 12:50:25 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'lms_rivera' in C:\xampp\htdocs\ITE311-RIVERA\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp\htdocs\ITE311-RIVERA\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'lms_rivera', 3306, '', 0)
+#1 C:\xampp\htdocs\ITE311-RIVERA\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp\htdocs\ITE311-RIVERA\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp\htdocs\ITE311-RIVERA\system\Database\BaseConnection.php(1525): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 C:\xampp\htdocs\ITE311-RIVERA\system\Database\BaseConnection.php(1545): CodeIgniter\Database\BaseConnection->listTables()
+#5 C:\xampp\htdocs\ITE311-RIVERA\system\Database\MigrationRunner.php(768): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#6 C:\xampp\htdocs\ITE311-RIVERA\system\Database\MigrationRunner.php(162): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 C:\xampp\htdocs\ITE311-RIVERA\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\xampp\htdocs\ITE311-RIVERA\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\xampp\htdocs\ITE311-RIVERA\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\xampp\htdocs\ITE311-RIVERA\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\ITE311-RIVERA\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\ITE311-RIVERA\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'lms_rivera' in C:\xampp\htdocs\ITE311-RIVERA\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\xampp\htdocs\ITE311-RIVERA\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\ITE311-RIVERA\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\ITE311-RIVERA\system\Database\BaseConnection.php(1525): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 C:\xampp\htdocs\ITE311-RIVERA\system\Database\BaseConnection.php(1545): CodeIgniter\Database\BaseConnection->listTables()
+#4 C:\xampp\htdocs\ITE311-RIVERA\system\Database\MigrationRunner.php(768): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#5 C:\xampp\htdocs\ITE311-RIVERA\system\Database\MigrationRunner.php(162): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 C:\xampp\htdocs\ITE311-RIVERA\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#7 C:\xampp\htdocs\ITE311-RIVERA\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#8 C:\xampp\htdocs\ITE311-RIVERA\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#9 C:\xampp\htdocs\ITE311-RIVERA\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#10 C:\xampp\htdocs\ITE311-RIVERA\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#11 C:\xampp\htdocs\ITE311-RIVERA\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-11-18 15:06:43 --> Error: Class "App\Controllers\UserModel" not found
+[Method: GET, Route: manage-users]
+in APPPATH\Controllers\BaseController.php on line 63.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-18 15:06:50 --> Error: Class "App\Controllers\UserModel" not found
+[Method: GET, Route: dashboard]
+in APPPATH\Controllers\BaseController.php on line 63.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-18 15:07:16 --> Error: Class "App\Controllers\UserModel" not found
+[Method: GET, Route: restricted-users]
+in APPPATH\Controllers\BaseController.php on line 63.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-18 15:07:18 --> Error: Class "App\Controllers\UserModel" not found
+[Method: GET, Route: manage-users]
+in APPPATH\Controllers\BaseController.php on line 63.
+ 1 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-18 15:08:11 --> ParseError: Unclosed '{' on line 23
+[Method: GET, Route: manage-users]
+in APPPATH\Controllers\BaseController.php on line 62.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\BaseController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\BaseController')
+ 3 APPPATH\Controllers\Auth.php(7): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\BaseController')
+ 4 SYSTEMPATH\Autoloader\Autoloader.php(315): include_once('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\Auth.php')
+ 5 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\Auth.php')
+ 6 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Auth')
+ 7 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Auth')
+ 8 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\Auth', true)
+ 9 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-18 15:08:12 --> ParseError: Unclosed '{' on line 23
+[Method: GET, Route: dashboard]
+in APPPATH\Controllers\BaseController.php on line 62.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\BaseController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\BaseController')
+ 3 APPPATH\Controllers\Auth.php(7): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\BaseController')
+ 4 SYSTEMPATH\Autoloader\Autoloader.php(315): include_once('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\Auth.php')
+ 5 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\Auth.php')
+ 6 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Auth')
+ 7 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Auth')
+ 8 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\Auth', true)
+ 9 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-18 15:08:15 --> ParseError: Unclosed '{' on line 23
+[Method: GET, Route: dashboard]
+in APPPATH\Controllers\BaseController.php on line 62.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\BaseController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\BaseController')
+ 3 APPPATH\Controllers\Auth.php(7): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\BaseController')
+ 4 SYSTEMPATH\Autoloader\Autoloader.php(315): include_once('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\Auth.php')
+ 5 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\Auth.php')
+ 6 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Auth')
+ 7 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Auth')
+ 8 SYSTEMPATH\CodeIgniter.php(885): class_exists('\\App\\Controllers\\Auth', true)
+ 9 SYSTEMPATH\CodeIgniter.php(494): CodeIgniter\CodeIgniter->startController()
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-18 15:14:00 --> ErrorException: Undefined variable $user
+[Method: GET, Route: logout]
+in APPPATH\Controllers\BaseController.php on line 58.
+ 1 APPPATH\Controllers\BaseController.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $user', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Controllers\\BaseController.php', 58)
+ 2 SYSTEMPATH\CodeIgniter.php(904): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

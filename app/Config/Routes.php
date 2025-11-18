@@ -57,3 +57,5 @@ $routes->post('auth/deleteUserPermanent', 'Auth::deleteUserPermanent');
 
 $routes->get('settings', 'Auth::settings');
 $routes->post('auth/updateSettings', 'Auth::updateSettings');
+
+

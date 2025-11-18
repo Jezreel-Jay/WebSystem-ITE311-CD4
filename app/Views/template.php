@@ -142,6 +142,12 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label">Reset Password</label>
+                        <input type="password" name="password" class="form-control" id="editUserPassword" placeholder="Leave blank to keep current password">
+                        <div class="form-text-custom">Optional. Enter a new password to reset.</div>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label">Role</label>
                         <select name="role" class="form-select" id="editUserRole">
                             <option value="admin">Admin</option>

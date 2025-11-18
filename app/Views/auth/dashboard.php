@@ -89,6 +89,7 @@
                         <th style="width: 200px;">Name</th>
                         <th style="width: 250px;">Email</th>
                         <th style="width: 150px;">Role</th>
+                        <th style="width: 150px;" class="text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,15 +102,25 @@
                                 <td>
                                     <span class="badge 
                                         <?= $user['role'] === 'admin' ? 'bg-danger' : 
-                                            ($user['role'] === 'teacher' ? 'bg-success' : 'bg-info') ?>">
+                                           ($user['role'] === 'teacher' ? 'bg-success' : 'bg-info') ?>">
                                         <?= ucfirst(esc($user['role'])) ?>
                                     </span>
+                                </td>
 
+                                <!-- STATUS COLUMN -->
+                                <td class="text-center">
 
-                                    <?php if (isset($user['status']) && $user['status'] === 'restricted'): ?>
-                                        <span class="text-secondary position-absolute end-0 me-3">
-                                            Restricted
-                                        </span>
+                                    <?php if ($user['status'] === 'active'): ?>
+                                        <span class="px-3 py-1 bg-primary text-white">Active</span>
+
+                                    <?php elseif ($user['status'] === 'restricted'): ?>
+                                        <span class="px-3 py-1 bg-secondary text-white">Restricted</span>
+
+                                    <?php elseif ($user['status'] === 'deleted'): ?>
+                                        <span class="px-3 py-1 bg-dark text-white">Deleted</span>
+
+                                    <?php else: ?>
+                                        <span class="px-3 py-1 bg-light text-dark">Unknown</span>
                                     <?php endif; ?>
 
                                 </td>
