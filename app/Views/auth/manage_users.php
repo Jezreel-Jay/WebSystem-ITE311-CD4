@@ -132,11 +132,16 @@ $showAddForm = session()->getFlashdata('add_error') ? 'block' : 'none';
                                     <?= ucfirst(esc($user['role'])) ?>
                                 </span>
                             <?php else: ?>
-                                <span class="text-muted">Admin (Protected)</span>
+                                    <span class="badge bg-danger">
+                                    <i class="bi bi-shield-lock-fill me-1"></i>Admin (you)
+                                </span>
                             <?php endif; ?>
                         </td>
                         <td class="text-end">
-                            <?php if ($user['id'] != $masterAdminId): ?>
+                            <?php 
+                                $isAdmin = ($user['role'] === 'admin');  ?>
+
+                            <?php if ($user['id'] != $masterAdminId && !$isAdmin): ?>
                                 <div class="d-flex justify-content-end align-items-center gap-2">
                                     <button 
                                         class="btn btn-sm btn-warning btn-edit-user"
@@ -157,7 +162,9 @@ $showAddForm = session()->getFlashdata('add_error') ? 'block' : 'none';
                                     </form>
                                 </div>
                             <?php else: ?>
-                                <span class="text-muted">Protected</span>
+                                    <span class="badge bg-dark px-3 py-2">
+                                    <i class="bi bi-shield-lock-fill me-1"></i> Protected
+                                </span>
                             <?php endif; ?>
                         </td>
                     </tr>

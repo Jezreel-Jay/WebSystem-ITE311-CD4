@@ -148,6 +148,12 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="editUserConfirmPassword" placeholder="Re-enter new password">
+                        <div class="form-text-custom">Must match the new password.</div>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label">Role</label>
                         <select name="role" class="form-select" id="editUserRole">
                             <option value="admin">Admin</option>

@@ -11,7 +11,6 @@ class Auth extends BaseController
     {
         $session = session();
 
-        // Check if user is logged in
         if (!$session->get('isLoggedIn')) {
             return redirect()->to(base_url('login'))->with('login_error', 'Please log in first.');
         }
@@ -19,7 +18,6 @@ class Auth extends BaseController
         $role = $session->get('role');
         $userModel = new UserModel();
 
-        // Prepare data for dashboard
         $data = [
             'name' => $session->get('userName'),
             'email' => $session->get('userEmail'),
@@ -75,31 +73,7 @@ class Auth extends BaseController
         return view('login');
     }
 
-    // public function attempt()
-    // {
-    //     $request = $this->request;
-    //     $email = trim((string)$request->getPost('email'));
-    //     $password = (string)$request->getPost('password');
-
-    //     $userModel = new UserModel();
-    //     $user = $userModel->where('email', $email)->first();
-
-    //     if ($user && password_verify($password, $user['password'])) {
-    //         $session = session();
-    //         $session->set([
-    //             'isLoggedIn' => true,
-    //             'userEmail' => $email,
-    //             'userName' => $user['name'],
-    //             'role' => $user['role'],
-    //         ]);
-
-    //         return redirect()->to(base_url('dashboard'));
-    //     }
-
-    //     return redirect()->back()->with('login_error', 'Invalid credentials');
-    // }
-
-        public function attempt()
+    public function attempt()
     {
         $request = $this->request;
         $email = trim((string)$request->getPost('email'));
@@ -134,14 +108,11 @@ class Auth extends BaseController
                 'userPasswordHash' => $user['password'],
             ]);
 
-            
-
             return redirect()->to(base_url('dashboard'));
         }
 
         return redirect()->back()->with('login_error', 'Invalid credentials');
     }
-
 
     // ========================= LOGOUT =========================
     public function logout()
@@ -218,46 +189,8 @@ class Auth extends BaseController
         return redirect()->to(base_url('login'))->with('register_success', 'Account created successfully.');
     }
 
-    // // ========================= ADD USER BY ADMIN =========================
-    // public function addUserByAdmin()
-    // {
-    //     $session = session();
-    //     if ($session->get('role') !== 'admin') {
-    //         return redirect()->to(base_url('dashboard'))->with('add_error', 'Access denied.');
-    //     }
-
-    //     helper('html');
-    //     $name = esc(trim((string)$this->request->getPost('name')));
-    //     $email = esc(trim((string)$this->request->getPost('email')));
-    //     $password = (string)$this->request->getPost('password');
-    //     $passwordConfirm = (string)$this->request->getPost('password_confirm');
-    //     $role = (string)$this->request->getPost('role');
-
-    //     if ($name === '' || $email === '' || $password === '' || $passwordConfirm === '' || $role === '') {
-    //         return redirect()->back()->withInput()->with('add_error', 'All fields are required.');
-    //     }
-
-    //     $userModel = new UserModel();
-
-    //     if ($password !== $passwordConfirm) {
-    //         return redirect()->back()->withInput()->with('add_error', 'Passwords do not match.');
-    //     }
-
-    //     if ($userModel->where('email', $email)->first()) {
-    //         return redirect()->back()->withInput()->with('add_error', 'Email already exists.');
-    //     }
-
-    //     $userModel->insert([
-    //         'name' => $name,
-    //         'email' => $email,
-    //         'role' => $role,
-    //         'password' => password_hash($password, PASSWORD_DEFAULT),
-    //     ]);
-
-    //     return redirect()->to(base_url('manage-users'))->with('add_success', "New {$role} account '{$name}' added successfully!");
-    // }
-
-        public function addUserByAdmin()
+    // ========================= ADD USER BY ADMIN =========================
+    public function addUserByAdmin()
     {
         $session = session();
         if ($session->get('role') !== 'admin') {
@@ -271,39 +204,32 @@ class Auth extends BaseController
         $passwordConfirm = (string)$this->request->getPost('password_confirm');
         $role = (string)$this->request->getPost('role');
 
-        //  Required fields
         if ($name === '' || $email === '' || $password === '' || $passwordConfirm === '' || $role === '') {
             return redirect()->back()->withInput()->with('add_error', 'All fields are required.');
         }
 
-        //  Name validation (no symbols)
         if (!preg_match('/^[a-zA-Z0-9\s.-]+$/', $name)) {
             return redirect()->back()->withInput()->with('add_error', 'Name contains invalid symbols.');
         }
 
-        //  Email validation (valid format + no quotes or < >)
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/[\'"<>]/', $email)) {
             return redirect()->back()->withInput()->with('add_error', 'Invalid email or forbidden characters.');
         }
 
-        //  Password match
         if ($password !== $passwordConfirm) {
             return redirect()->back()->withInput()->with('add_error', 'Passwords do not match.');
         }
 
-        //  Password validation (no single or double quotes)
         if (preg_match('/[\'"]/', $password)) {
             return redirect()->back()->withInput()->with('add_error', 'Password cannot contain single or double quotes.');
         }
 
         $userModel = new UserModel();
 
-        //  Prevent duplicate email
         if ($userModel->where('email', $email)->first()) {
             return redirect()->back()->withInput()->with('add_error', 'Email already exists.');
         }
 
-        //  Save user
         $userModel->insert([
             'name' => $name,
             'email' => $email,
@@ -314,58 +240,67 @@ class Auth extends BaseController
         return redirect()->to(base_url('manage-users'))->with('add_success', "New {$role} account '{$name}' added successfully!");
     }
 
-
-    // ========================= UPDATE USER ROLE =========================
-    // public function updateUserRole()
-    // {
-    //     $userModel = new UserModel();
-    //     $id = $this->request->getPost('id');
-    //     $name = $this->request->getPost('name');
-    //     $role = $this->request->getPost('role');
-
-    //     if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
-
-    //     $userModel->update($id, ['name' => $name, 'role' => $role]);
-
-    //     return redirect()->back()->with('success', "User '{$name}' updated successfully.");
-    // }
-
-        public function updateUserRole()
+    // ========================= UPDATE USER ROLE (WITH CONFIRM PASSWORD + ADMIN PROTECTION) =========================
+    public function updateUserRole()
     {
         $userModel = new UserModel();
         $id = $this->request->getPost('id');
         $name = $this->request->getPost('name');
         $role = $this->request->getPost('role');
-        $newPassword = $this->request->getPost('password'); // from modal
+        $newPassword = $this->request->getPost('password');
+        $confirmPassword = $this->request->getPost('confirm_password'); // 🔥 CHANGE ADDED
 
         if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
+
+        $user = $userModel->find($id);
+
+        // 🔥 PROTECT ALL ADMINS ===================================
+        if ($user['role'] === 'admin') {
+
+            // Prevent changing admin role
+            if ($role !== 'admin') {
+                return redirect()->back()->with('error', 'Admin role cannot be changed.');
+            }
+        }
+        // ==========================================================
 
         $updateData = [
             'name' => $name,
             'role' => $role
         ];
 
-        // Only update password if user typed something
+        // 🔥 ADD CONFIRM PASSWORD VALIDATION =======================
         if (!empty($newPassword)) {
-            // Check no single/double quotes
+
+            if ($newPassword !== $confirmPassword) {
+                return redirect()->back()->with('error', 'Passwords do not match.');
+            }
+
             if (preg_match('/[\'"]/', $newPassword)) {
                 return redirect()->back()->with('error', 'Password cannot contain quotes.');
             }
 
             $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
         }
+        // ===========================================================
 
         $userModel->update($id, $updateData);
 
         return redirect()->back()->with('success', "User '{$name}' updated successfully.");
     }
 
-
     // ========================= DELETE USER =========================
     public function deleteUser()
     {
         $id = $this->request->getPost('id');
         $userModel = new UserModel();
+
+        $user = $userModel->find($id);
+
+        // 🔥 PROTECT ADMIN USERS
+        if ($user['role'] === 'admin') {
+            return redirect()->back()->with('error', 'Admin accounts cannot be deleted.');
+        }
 
         if ($id == 1) return redirect()->back()->with('error', 'Cannot delete master admin.');
 
@@ -375,27 +310,7 @@ class Auth extends BaseController
     }
 
     // ========================= RESTRICT USER =========================
-    // public function restrictUser()
-    // {
-    //     $session = session();
-    //     if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
-    //         return redirect()->to(base_url('login'))->with('error', 'Access denied.');
-    //     }
-
-    //     $id = $this->request->getPost('id');
-    //     $userModel = new UserModel();
-
-    //     if ($id == 1) return redirect()->back()->with('error', 'Main admin cannot be restricted.');
-
-    //     $user = $userModel->find($id);
-    //     if (!$user) return redirect()->back()->with('error', 'User not found.');
-
-    //     $userModel->update($id, ['status' => 'restricted']);
-
-    //     return redirect()->to(base_url('manage-users'))->with('success', "User '{$user['name']}' has been restricted.");
-    // }
-
-        public function restrictUser()
+    public function restrictUser()
     {
         $session = session();
         if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
@@ -405,93 +320,86 @@ class Auth extends BaseController
         $id = $this->request->getPost('id');
         $userModel = new UserModel();
 
+        $user = $userModel->find($id);
+
+        // 🔥 PROTECT ADMIN
+        if ($user['role'] === 'admin') {
+            return redirect()->back()->with('error', 'Admin cannot be restricted.');
+        }
+
         if ($id == 1) {
             return redirect()->back()->with('error', 'Main admin cannot be restricted.');
         }
 
-        $user = $userModel->find($id);
         if (!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
 
         $userModel->update($id, ['status' => 'restricted']);
 
-        //  Handles both array or object
-        $userName = is_array($user) ? $user['name'] : $user->name;
+        $userName = $user['name'];
 
         return redirect()->to(base_url('manage-users'))
             ->with('success', "User '{$userName}' has been restricted.");
-        
-        
     }
-
 
     // ========================= VIEW RESTRICTED USERS =========================
-public function restrictedUsers()
-{
-    $session = session();
-    if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
-        return redirect()->to('login');
+    public function restrictedUsers()
+    {
+        $session = session();
+        if (!$session->get('isLoggedIn') || $session->get('role') !== 'admin') {
+            return redirect()->to('login');
+        }
+
+        $userModel = new UserModel();
+        $data = [
+            'name' => $session->get('userName'),
+            'role' => $session->get('role'),
+            'restrictedUsers' => $userModel->where('status', 'restricted')->where('is_deleted', 0)->findAll(),
+        ];
+
+        return view('auth/restricted_users', $data);
     }
 
-    $userModel = new UserModel();
-    $data = [
-        'name' => $session->get('userName'),
-        'role' => $session->get('role'),
-        'restrictedUsers' => $userModel->where('status', 'restricted')->where('is_deleted', 0)->findAll(),
-    ];
-
-    return view('auth/restricted_users', $data);
-}
-
-// ========================= UNRESTRICT USER =========================
-public function unrestrictUser()
-{
-    $id = $this->request->getPost('id');
-    $userModel = new UserModel();
-    $user = $userModel->find($id);
-
-    if (!$user) return redirect()->back()->with('error', 'User not found.');
-
-
-    $userName = is_array($user) ? $user['name'] : $user->name;
-    
-    $userModel->update($id, ['status' => null]);
-    return redirect()->back()->with('success', "User '{$user['name']}' unrestricted successfully.");
-}
-
-//========================= DELETE USER PERMANENTLY =========================
-// public function deleteUserPermanent()
-// {
-//     $id = $this->request->getPost('id');
-//     $userModel = new UserModel();
-    
-//     if ($id == 1) return redirect()->back()->with('error', 'Cannot delete master admin.');
-
-
-//     $userModel->delete($id, true);
-//     return redirect()->back()->with('success', 'User permanently deleted.');
-// }
-        public function deleteUserPermanent()
+    // ========================= UNRESTRICT USER =========================
+    public function unrestrictUser()
     {
         $id = $this->request->getPost('id');
         $userModel = new UserModel();
+        $user = $userModel->find($id);
+
+        if (!$user) return redirect()->back()->with('error', 'User not found.');
+
+        $userModel->update($id, ['status' => null]);
+        return redirect()->back()->with('success', "User '{$user['name']}' unrestricted successfully.");
+    }
+
+    // ========================= DELETE USER PERMANENTLY =========================
+    public function deleteUserPermanent()
+    {
+        $id = $this->request->getPost('id');
+        $userModel = new UserModel();
+
+        $user = $userModel->find($id);
+
+        // 🔥 PROTECT ADMIN
+        if ($user['role'] === 'admin') {
+            return redirect()->back()->with('error', 'Admin accounts cannot be permanently deleted.');
+        }
 
         if ($id == 1) {
             return redirect()->back()->with('error', 'Cannot delete master admin.');
         }
 
-        $user = $userModel->find($id);
         if (!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
 
-        //  Mark as deleted instead of removing from DB
+        // Just mark deleted
         $userModel->update($id, ['is_deleted' => 1]);
 
         return redirect()->back()->with('success', 'User permanently deleted.');
     }
-    
 
     // ========================= MANAGE USERS =========================
     public function manageUsers()
@@ -511,7 +419,7 @@ public function unrestrictUser()
         return view('auth/manage_users', $data);
     }
 
-        public function manage_users()
+    public function manage_users()
     {
         $userModel = new UserModel();
         $viewType = $this->request->getGet('view');
@@ -527,7 +435,6 @@ public function unrestrictUser()
         $data['role'] = session()->get('role');
         return view('auth/manage_users', $data);
     }
-
 
     // ========================= EDIT USER PAGE =========================
     public function editUser($id)
@@ -548,7 +455,6 @@ public function unrestrictUser()
         ]);
     }
 
-    
     public function settings()
     {
         $session = session();
@@ -557,7 +463,6 @@ public function unrestrictUser()
             return redirect()->to(base_url('login'))->with('login_error', 'Please log in first.');
         }
 
-        // Path matches file location
         return view('auth/settings');
     }
 
@@ -570,7 +475,6 @@ public function unrestrictUser()
             return redirect()->back()->with('error', 'Invalid input.');
         }
 
-        // Validate password (no quotes)
         if (preg_match('/[\'"]/', $newPassword)) {
             return redirect()->back()->with('error', 'Password cannot contain quotes.');
         }
@@ -579,15 +483,11 @@ public function unrestrictUser()
         $user = $userModel->find($id);
         if (!$user) return redirect()->back()->with('error', 'User not found.');
 
-        // Update password in database
         $userModel->update($id, [
             'password' => password_hash($newPassword, PASSWORD_DEFAULT),
-            'status' => 'active'  
+            'status' => 'active'
         ]);
 
         return redirect()->back()->with('success', "Password reset successfully for {$user['name']}.");
     }
-
-
-    
 }
