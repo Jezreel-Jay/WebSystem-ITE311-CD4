@@ -94,7 +94,17 @@
         .status-deleted { background-color: #dc3545; color: #fff; }
 
         /* ==================== DARK MODE ==================== */
-        
+        /* Dark mode */
+
+
+        .dark-mode .userlist-wrapper .card-header {
+            background-color: #1a3b5a !important; /* darker blue for dark mode */
+        }
+
+
+
+
+
         body.dark-mode {
             background-color: #121212;
             color: #b0b0b0;
@@ -120,6 +130,8 @@
         }
 
         body.dark-mode .badge { color: #fff !important; }
+
+        
     </style>
 </head>
 <body class="<?php 

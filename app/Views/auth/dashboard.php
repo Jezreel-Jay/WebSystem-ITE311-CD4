@@ -79,7 +79,8 @@
     </div>
 
     <!--  User List Table -->
-    <div class="card mt-5 shadow-sm border-0">
+    <div class="card mt-5 shadow-sm border-0 userlist-wrapper">
+    
         <div class="card-header d-flex align-items-center" style="background-color: #003366; color: white;">
             <i class="bi bi-list-ul fs-4 me-2"></i>
             <h4 class="mb-0">User List</h4>
@@ -144,6 +145,7 @@
             </table>
         </div>
     </div>
+    
 
 
 <?php elseif ($role === 'teacher'): ?>
