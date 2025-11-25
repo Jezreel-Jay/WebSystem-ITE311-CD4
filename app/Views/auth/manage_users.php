@@ -7,7 +7,7 @@
     </div>
     <div class="d-flex gap-2">
         <!-- Add New User Button -->
-        <button class="btn btn-success" id="toggleAddUser">
+        <button class="btn btn-add-user" id="toggleAddUser">
             <i class="bi bi-person-plus-fill"></i> Add New User
         </button>
 
@@ -23,7 +23,7 @@
 $showAddForm = session()->getFlashdata('add_error') ? 'block' : 'none';
 ?>
 <div id="addUserForm" class="card mb-4 shadow-sm border-0" style="display:<?= $showAddForm ?>;">
-    <div class="card-header d-flex align-items-center" style="background-color:#006400; color:white;">
+    <div class="card-header d-flex align-items-center" style="background-color:#1343b3; color:white;">
         <i class="bi bi-person-plus-fill fs-5 me-2"></i>
         <h5 class="mb-0">Add New User</h5>
     </div>
@@ -75,7 +75,7 @@ $showAddForm = session()->getFlashdata('add_error') ? 'block' : 'none';
                 </select>
             </div>
             <div class="col-12 text-end">
-                <button type="submit" class="btn btn-success px-4">Add User</button>
+                <button type="submit" class="btn btn-add-user-submit px-4">Add User</button>
             </div>
         </form>
     </div>

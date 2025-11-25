@@ -1,17 +1,20 @@
 <?= $this->extend('template') ?>
 <?= $this->section('content') ?>
 
-<!--  WELCOME SECTION WITH DEFAULT GRAY PROFILE ICON -->
-<div class="d-flex align-items-center mb-3">
-    <!-- Default Gray Profile Icon -->
-    <i class="bi bi-person-circle me-3" style="font-size: 80px; color: gray;"></i>
+<!-- WRAPPED WELCOME SECTION IN TRANSPARENT OUTLINE -->
+<div class="welcome-box p-4 mb-3">
+    <div class="d-flex align-items-center">
+        <!-- Default Gray Profile Icon -->
+        <i class="bi bi-person-circle me-3" style="font-size: 80px; color: gray;"></i>
 
-    <!-- Name and Email -->
-    <div>
-        <h1 class="mb-1">Welcome, <?= ucfirst(esc($name)) ?>!</h1>
-        <p class="mb-0"><i class="bi bi-envelope-fill me-2"></i><?= esc($email) ?></p>
+        <!-- Name and Email -->
+        <div>
+            <h1 class="mb-1">Welcome, <?= ucfirst(esc($name)) ?>!</h1>
+            <p class="mb-0"><i class="bi bi-envelope-fill me-2"></i><?= esc($email) ?></p>
+        </div>
     </div>
 </div>
+
 
 <?php if ($role === 'admin'): ?>
     <h2 class="mb-4 text-primary fw-bold">Admin Dashboard</h2>
@@ -89,7 +92,10 @@
                         <th style="width: 200px;">Name</th>
                         <th style="width: 250px;">Email</th>
                         <th style="width: 150px;">Role</th>
+                        <th style="width: 180px;">Created At</th>
+                        <th style="width: 180px;">Updated At</th>
                         <th style="width: 150px;" class="text-center">Status</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -106,7 +112,8 @@
                                         <?= ucfirst(esc($user['role'])) ?>
                                     </span>
                                 </td>
-
+                                    <td><?= esc($user['created_at']) ?></td>
+                                    <td><?= esc($user['updated_at']) ?></td>
                                 <!-- STATUS COLUMN -->
                                 <td class="text-center">
 
