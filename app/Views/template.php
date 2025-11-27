@@ -224,28 +224,33 @@
         const modalHeader = document.querySelector('#editUserModal .modal-header');
 
         // EDIT MODAL POPULATION
-        const editButtons = document.querySelectorAll('.btn-edit-user');
-        editButtons.forEach(btn => {
-            btn.addEventListener('click', function () {
+const editButtons = document.querySelectorAll('.btn-edit-user');
+editButtons.forEach(btn => {
+    btn.addEventListener('click', function () {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const email = this.dataset.email;
+        const role = this.dataset.role;
 
-                const id = this.dataset.id;
-                const name = this.dataset.name;
-                const email = this.dataset.email;
-                const role = this.dataset.role;
+        document.getElementById('editUserId').value = id;
+        document.getElementById('editUserName').value = name;
+        document.getElementById('editUserEmail').value = email;
+        document.getElementById('editUserRole').value = role;
 
-                document.getElementById('editUserId').value = id;
-                document.getElementById('editUserName').value = name;
-                document.getElementById('editUserEmail').value = email;
-                document.getElementById('editUserRole').value = role;
+            if (parseInt(id) === 1) {
+                document.getElementById('editUserRole').disabled = true; //  Master Admin role protected
+            } else {
+                document.getElementById('editUserRole').disabled = false; // Admin & others can edit role
+            }
 
-                // Apply header color based on role
-                modalHeader.classList.remove('card-admin', 'card-teacher', 'card-student');
-                modalHeader.classList.add('card-' + role);
+        // Apply header color
+        const modalHeader = document.querySelector('#editUserModal .modal-header');
+        modalHeader.classList.remove('card-admin', 'card-teacher', 'card-student');
+        modalHeader.classList.add('card-' + role);
 
-                // Show modal
-                editUserModal.show();
-            });
-        });
+        editUserModal.show();
+    });
+});
 
 
     });

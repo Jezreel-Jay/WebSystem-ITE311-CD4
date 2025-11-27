@@ -241,53 +241,98 @@ class Auth extends BaseController
     }
 
     // ========================= UPDATE USER ROLE (WITH CONFIRM PASSWORD + ADMIN PROTECTION) =========================
-    public function updateUserRole()
+    // public function updateUserRole()
+    // {
+    //     $userModel = new UserModel();
+    //     $id = $this->request->getPost('id');
+    //     $name = $this->request->getPost('name');
+    //     $role = $this->request->getPost('role');
+    //     $newPassword = $this->request->getPost('password');
+    //     $confirmPassword = $this->request->getPost('confirm_password'); //  CHANGE ADDED
+        
+    //     if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
+
+    //     $user = $userModel->find($id);
+
+    //     // PROTECT ALL ADMINS ===================================
+    //     if ($user['role'] === 'admin') {
+
+    //         // Prevent changing admin role
+    //         if ($role !== 'admin') {
+    //             return redirect()->back()->with('error', 'Admin role cannot be changed.');
+    //         }
+    //     }
+    //     // ==========================================================
+
+    //     $updateData = [
+    //         'name' => $name,
+    //         'role' => $role
+    //     ];
+
+    //     //  ADD CONFIRM PASSWORD VALIDATION =======================
+    //     if (!empty($newPassword)) {
+
+    //         if ($newPassword !== $confirmPassword) {
+    //             return redirect()->back()->with('error', 'Passwords do not match.');
+    //         }
+
+    //         if (preg_match('/[\'"]/', $newPassword)) {
+    //             return redirect()->back()->with('error', 'Password cannot contain quotes.');
+    //         }
+
+    //         $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+    //     }
+    //     // ===========================================================
+
+    //     $userModel->update($id, $updateData);
+
+    //     return redirect()->back()->with('success', "User '{$name}' updated successfully.");
+    // }
+        public function updateUserRole()
     {
         $userModel = new UserModel();
         $id = $this->request->getPost('id');
         $name = $this->request->getPost('name');
         $role = $this->request->getPost('role');
         $newPassword = $this->request->getPost('password');
-        $confirmPassword = $this->request->getPost('confirm_password'); // 🔥 CHANGE ADDED
+        $confirmPassword = $this->request->getPost('confirm_password');
 
         if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
 
         $user = $userModel->find($id);
 
-        // 🔥 PROTECT ALL ADMINS ===================================
-        if ($user['role'] === 'admin') {
+        if (!$user) return redirect()->back()->with('error', 'User not found.');
 
-            // Prevent changing admin role
-            if ($role !== 'admin') {
-                return redirect()->back()->with('error', 'Admin role cannot be changed.');
-            }
+        $sessionRole = session()->get('role');
+        $masterAdminId = 1;
+
+        $updateData = ['name' => $name];
+
+        // 🔹 PROTECTED ROLE LOGIC
+        if ($id != $masterAdminId) { 
+            // Not master admin, can update role
+            $updateData['role'] = $role;
+        } else {
+            // Master admin role cannot be changed
+            $updateData['role'] = $user['role'];
         }
-        // ==========================================================
 
-        $updateData = [
-            'name' => $name,
-            'role' => $role
-        ];
-
-        // 🔥 ADD CONFIRM PASSWORD VALIDATION =======================
+        // 🔹 PASSWORD CHANGE VALIDATION
         if (!empty($newPassword)) {
-
             if ($newPassword !== $confirmPassword) {
                 return redirect()->back()->with('error', 'Passwords do not match.');
             }
-
             if (preg_match('/[\'"]/', $newPassword)) {
                 return redirect()->back()->with('error', 'Password cannot contain quotes.');
             }
-
             $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
         }
-        // ===========================================================
 
         $userModel->update($id, $updateData);
 
         return redirect()->back()->with('success', "User '{$name}' updated successfully.");
     }
+
 
     // ========================= DELETE USER =========================
     public function deleteUser()
@@ -297,7 +342,7 @@ class Auth extends BaseController
 
         $user = $userModel->find($id);
 
-        // 🔥 PROTECT ADMIN USERS
+        //  PROTECT ADMIN USERS
         if ($user['role'] === 'admin') {
             return redirect()->back()->with('error', 'Admin accounts cannot be deleted.');
         }
@@ -322,7 +367,7 @@ class Auth extends BaseController
 
         $user = $userModel->find($id);
 
-        // 🔥 PROTECT ADMIN
+        //  PROTECT ADMIN
         if ($user['role'] === 'admin') {
             return redirect()->back()->with('error', 'Admin cannot be restricted.');
         }
@@ -382,7 +427,7 @@ class Auth extends BaseController
 
         $user = $userModel->find($id);
 
-        // 🔥 PROTECT ADMIN
+        //  PROTECT ADMIN
         if ($user['role'] === 'admin') {
             return redirect()->back()->with('error', 'Admin accounts cannot be permanently deleted.');
         }
@@ -414,6 +459,7 @@ class Auth extends BaseController
             'name' => $session->get('userName'),
             'role' => $session->get('role'),
             'allUsers' => $userModel->where('is_deleted', 0)->findAll(),
+            'masterAdminId' => 1
         ];
 
         return view('auth/manage_users', $data);

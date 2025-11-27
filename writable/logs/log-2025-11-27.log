@@ -1,0 +1,74 @@
+CRITICAL - 2025-11-27 03:44:38 --> ParseError: syntax error, unexpected token "endif"
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 209.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 3 APPPATH\Controllers\Auth.php(470): view('auth/manage_users', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 03:47:26 --> ParseError: syntax error, unexpected token "endif"
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 178.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 3 APPPATH\Controllers\Auth.php(470): view('auth/manage_users', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 03:56:19 --> ErrorException: Undefined variable $canEdit
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 156.
+ 1 APPPATH\Views\auth\manage_users.php(156): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $canEdit', 'C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php', 156)
+ 2 SYSTEMPATH\View\View.php(226): include('C:\\xampp\\htdocs\\ITE311-RIVERA\\app\\Views\\auth\\manage_users.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 5 APPPATH\Controllers\Auth.php(470): view('auth/manage_users', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:58:03 --> ParseError: syntax error, unexpected end of file
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 196.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 3 APPPATH\Controllers\Auth.php(397): view('auth/manage_users', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 04:58:12 --> ParseError: syntax error, unexpected end of file
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 196.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 3 APPPATH\Controllers\Auth.php(397): view('auth/manage_users', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-11-27 05:14:13 --> ParseError: syntax error, unexpected token "endforeach", expecting "elseif" or "else" or "endif"
+[Method: GET, Route: manage-users]
+in APPPATH\Views\auth\manage_users.php on line 173.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('auth/manage_users', [], true)
+ 3 APPPATH\Controllers\Auth.php(397): view('auth/manage_users', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->manageUsers()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(128): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

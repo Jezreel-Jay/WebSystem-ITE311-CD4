@@ -137,33 +137,35 @@ $showAddForm = session()->getFlashdata('add_error') ? 'block' : 'none';
                                 </span>
                             <?php endif; ?>
                         </td>
-                        <td class="text-end">
-                            <?php 
-                                $isAdmin = ($user['role'] === 'admin');  ?>
+                                <td class="text-end">
+                                    <div class="d-flex justify-content-end align-items-center gap-2">
 
-                            <?php if ($user['id'] != $masterAdminId && !$isAdmin): ?>
-                                <div class="d-flex justify-content-end align-items-center gap-2">
-                                    <button 
-                                        class="btn btn-sm btn-warning btn-edit-user"
-                                        data-id="<?= esc($user['id']) ?>"
-                                        data-name="<?= esc($user['name']) ?>"
-                                        data-email="<?= esc($user['email']) ?>"
-                                        data-role="<?= esc($user['role']) ?>">
-                                        <i class="bi bi-pencil-square"></i> Edit
-                                    </button>
+                                        <!-- 🔹 Edit Button for all users except master admin ID 1 can still be applied -->
+                                        <?php if ($user['role'] === 'admin' || $user['id'] == $masterAdminId || $user['role'] !== 'admin'): ?>
+                                            <button 
+                                                class="btn btn-sm btn-warning btn-edit-user"
+                                                data-id="<?= esc($user['id']) ?>"
+                                                data-name="<?= esc($user['name']) ?>"
+                                                data-email="<?= esc($user['email']) ?>"
+                                                data-role="<?= esc($user['role']) ?>">
+                                                <i class="bi bi-pencil-square"></i> Edit
+                                            </button>
+                                        <?php endif; ?>
 
-                                    <form action="<?= base_url('restrictUser') ?>" method="post" class="d-inline">
-                                        <?= csrf_field() ?>
-                                        <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
-                                        <button type="submit" class="btn btn-sm btn-secondary"
-                                            onclick="return confirm('Restrict this user?')">
-                                            <i class="bi bi-lock"></i> Restrict
-                                        </button>
-                                    </form>
-                                </div>
-                            <?php else: ?>
-                                    <span class="badge bg-dark px-3 py-2">
-                                    <i class="bi bi-shield-lock-fill me-1"></i> Protected
+                                        <!--  Restrict Button (unchanged, only for non-admins/non-master) -->
+                                        <?php if ($user['id'] != $masterAdminId && $user['role'] !== 'admin'): ?>
+                                            <form action="<?= base_url('restrictUser') ?>" method="post" class="d-inline">
+                                                <?= csrf_field() ?>
+                                                <input type="hidden" name="id" value="<?= esc($user['id']) ?>">
+                                                <button type="submit" class="btn btn-sm btn-secondary" style="min-width:110px;"
+                                                    onclick="return confirm('Restrict this user?')">
+                                                    <i class="bi bi-lock"></i> Restrict
+                                                </button>
+                                            </form>
+                                        </div>
+                                    <?php else: ?>
+                                    <span class="badge bg-dark px-3 py-2" style="min-width:110px; text-align:center;">
+                                        <i class="bi bi-shield-lock-fill me-1"></i> Protected
                                 </span>
                             <?php endif; ?>
                         </td>
