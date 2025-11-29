@@ -288,50 +288,61 @@ class Auth extends BaseController
 
     //     return redirect()->back()->with('success', "User '{$name}' updated successfully.");
     // }
-        public function updateUserRole()
-    {
-        $userModel = new UserModel();
-        $id = $this->request->getPost('id');
-        $name = $this->request->getPost('name');
-        $role = $this->request->getPost('role');
-        $newPassword = $this->request->getPost('password');
-        $confirmPassword = $this->request->getPost('confirm_password');
+public function updateUserRole()
+{
+    $userModel = new UserModel();
+    $id = $this->request->getPost('id');
+    $name = $this->request->getPost('name');
+    $role = $this->request->getPost('role');
+    $newPassword = $this->request->getPost('new_password');
+    $confirmPassword = $this->request->getPost('confirm_password');
+    $defaultPassword = $this->request->getPost('default_password');
 
-        if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
+    if (!$id) return redirect()->back()->with('error', 'Invalid user ID.');
 
-        $user = $userModel->find($id);
+    $user = $userModel->find($id);
+    if (!$user) return redirect()->back()->with('error', 'User not found.');
 
-        if (!$user) return redirect()->back()->with('error', 'User not found.');
 
-        $sessionRole = session()->get('role');
-        $masterAdminId = 1;
-
-        $updateData = ['name' => $name];
-
-        // 🔹 PROTECTED ROLE LOGIC
-        if ($id != $masterAdminId) { 
-            // Not master admin, can update role
-            $updateData['role'] = $role;
-        } else {
-            // Master admin role cannot be changed
-            $updateData['role'] = $user['role'];
-        }
-
-        // 🔹 PASSWORD CHANGE VALIDATION
-        if (!empty($newPassword)) {
-            if ($newPassword !== $confirmPassword) {
-                return redirect()->back()->with('error', 'Passwords do not match.');
-            }
-            if (preg_match('/[\'"]/', $newPassword)) {
-                return redirect()->back()->with('error', 'Password cannot contain quotes.');
-            }
-            $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
-        }
-
-        $userModel->update($id, $updateData);
-
-        return redirect()->back()->with('success', "User '{$name}' updated successfully.");
+        //  Verify default password
+    if (!$defaultPassword || !password_verify($defaultPassword, $user['password'])) {
+        return redirect()->back()->with('error', 'Default password is incorrect.');
     }
+    $updateData = ['name' => $name];
+
+    //  PROTECTED MASTER ADMIN ROLE
+    if ($id != 1) {
+        $updateData['role'] = $role;
+    } else {
+        $updateData['role'] = $user['role']; // cannot change master admin role
+    }
+
+    //  PASSWORD CHANGE LOGIC
+    if (!empty($newPassword)) {
+        // Only apply new password if user actually entered it
+        if ($newPassword !== $confirmPassword) {
+            return redirect()->back()->with('error', 'Passwords do not match.');
+        }
+        if (preg_match('/[\'"]/', $newPassword)) {
+            return redirect()->back()->with('error', 'Password cannot contain quotes.');
+        }
+        $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+    }
+    //  IMPORTANT CHANGE:
+    // Removed default_password overwrite → prevents logging in with old password
+    // $defaultPassword logic removed
+
+    $userModel->update($id, $updateData);
+
+    // Auto logout if master admin changes own password
+    if ($id == 1 && session()->get('userId') == 1) {
+        session()->destroy();
+        return redirect()->to(base_url('login'))
+                         ->with('success', 'Your account has been updated. Please log in again.');
+    }
+
+    return redirect()->back()->with('success', "User '{$name}' updated successfully.");
+}
 
 
     // ========================= DELETE USER =========================
@@ -512,28 +523,101 @@ class Auth extends BaseController
         return view('auth/settings');
     }
 
+    // public function resetPassword()
+    // {
+    //     $id = $this->request->getPost('id');
+    //     $newPassword = $this->request->getPost('new_password');
+
+    //     if (!$id || !$newPassword) {
+    //         return redirect()->back()->with('error', 'Invalid input.');
+    //     }
+
+    //     if (preg_match('/[\'"]/', $newPassword)) {
+    //         return redirect()->back()->with('error', 'Password cannot contain quotes.');
+    //     }
+
+    //     $userModel = new UserModel();
+    //     $user = $userModel->find($id);
+    //     if (!$user) return redirect()->back()->with('error', 'User not found.');
+
+    //     $userModel->update($id, [
+    //         'password' => password_hash($newPassword, PASSWORD_DEFAULT),
+    //         'status' => 'active'
+    //     ]);
+
+    //     return redirect()->back()->with('success', "Password reset successfully for {$user['name']}.");
+    // }
     public function resetPassword()
-    {
-        $id = $this->request->getPost('id');
-        $newPassword = $this->request->getPost('new_password');
+        {
+            $id = $this->request->getPost('id');
+            $defaultPassword = trim($this->request->getPost('default_password'));
+            $newPassword = trim($this->request->getPost('new_password'));
+            $confirmPassword = trim($this->request->getPost('confirm_password'));
 
-        if (!$id || !$newPassword) {
-            return redirect()->back()->with('error', 'Invalid input.');
+            if (!$id || !$defaultPassword) {
+                return redirect()->back()->with('error', 'Default password is required.');
+            }
+            $userModel = new UserModel();
+            $user = $userModel->find($id);
+            if (!$user) return redirect()->back()->with('error', 'User not found.');
+
+             //  Verify default password ===
+            if (!password_verify($defaultPassword, $user['password'])) {
+                return redirect()->back()->with('error', 'Default password is incorrect.');
+            }
+            // Decide which password to save
+            if (!empty($newPassword)) {
+                // Validate new password against confirm
+                if ($newPassword !== $confirmPassword) {
+                    return redirect()->back()->with('error', 'Passwords do not match.');
+                }
+                $passwordToSave = $newPassword; // Use new password if provided
+            } else {
+                $passwordToSave = $defaultPassword; // Otherwise use default
+            }
+
+            // Prevent quotes in whichever password is used
+            if (preg_match('/[\'"]/', $passwordToSave)) {
+                return redirect()->back()->with('error', 'Password cannot contain quotes.');
+            }
+
+            $userModel->update($id, [
+                'password' => password_hash($passwordToSave, PASSWORD_DEFAULT),
+                'status' => 'active'
+            ]);
+
+            // Auto logout if master admin changes own password
+            if ($id == 1 && session()->get('userId') == 1) {
+                session()->destroy();
+                return redirect()->to(base_url('login'))
+                                ->with('success', 'Your password has been updated. Please log in again.');
+            }
+
+            return redirect()->back()->with('success', "Password reset successfully for {$user['name']}.");
         }
 
-        if (preg_match('/[\'"]/', $newPassword)) {
-            return redirect()->back()->with('error', 'Password cannot contain quotes.');
+        // ========================= GENERATE DEFAULT PASSWORD =========================
+        // Purpose: Generates a new password, updates user default password, returns password to modal
+        public function generateDefaultPassword($id)
+        {
+            $userModel = new UserModel();
+            $user = $userModel->find($id);
+
+            if (!$user) {
+                return $this->response->setJSON(['error' => 'User not found']);
+            }
+
+            // Generate random password, 8 chars
+            $newPassword = bin2hex(random_bytes(4)); // 8 char random hex
+
+            // Update user's password in DB
+            $userModel->update($id, [
+                'password' => password_hash($newPassword, PASSWORD_DEFAULT),
+                'status' => 'active' // ensure account active
+            ]);
+
+            // Return new password for modal field
+            return $this->response->setJSON(['password' => $newPassword]);
         }
 
-        $userModel = new UserModel();
-        $user = $userModel->find($id);
-        if (!$user) return redirect()->back()->with('error', 'User not found.');
-
-        $userModel->update($id, [
-            'password' => password_hash($newPassword, PASSWORD_DEFAULT),
-            'status' => 'active'
-        ]);
-
-        return redirect()->back()->with('success', "Password reset successfully for {$user['name']}.");
-    }
 }

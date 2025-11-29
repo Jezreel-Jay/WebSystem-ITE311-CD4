@@ -152,7 +152,7 @@ $showAddForm = session()->getFlashdata('add_error') ? 'block' : 'none';
                                             </button>
                                         <?php endif; ?>
 
-                                        <!--  Restrict Button (unchanged, only for non-admins/non-master) -->
+                                        <!--  Restrict Button (only for non-admins/non-master) -->
                                         <?php if ($user['id'] != $masterAdminId && $user['role'] !== 'admin'): ?>
                                             <form action="<?= base_url('restrictUser') ?>" method="post" class="d-inline">
                                                 <?= csrf_field() ?>

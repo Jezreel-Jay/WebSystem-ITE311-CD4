@@ -102,9 +102,6 @@
         }
 
 
-
-
-
         body.dark-mode {
             background-color: #121212;
             color: #b0b0b0;
@@ -169,15 +166,23 @@
                             <input type="email" class="form-control" id="editUserEmail" disabled>
                         </div>
 
+                        <!-- Default Password (required) -->
                         <div class="mb-3">
-                            <label class="form-label">Reset Password</label>
-                            <input type="password" name="password" class="form-control" id="editUserPassword">
+                            <label for="default_password">Default Password</label>
+                            <input type="password" class="form-control" name="default_password" id="default_password" placeholder="Enter default password" required>
+                        </div>
+
+                        <!-- Reset Password (optional) -->
+                        <div class="mb-3">
+                            <label for="new_password">Reset Password</label>
+                            <input type="password" class="form-control" name="new_password" id="new_password" placeholder="Leave blank if not changing">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="editUserConfirmPassword">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm new password">
                         </div>
+
 
                         <div class="mb-3">
                             <label class="form-label">Role</label>
@@ -191,6 +196,8 @@
 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-admin">Save Changes</button>
+                        <button type="button" class="btn btn-success" id="generatePasswordBtn">
+                            <i class="bi bi-key-fill me-1"></i> Generate Password
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
@@ -224,36 +231,62 @@
         const modalHeader = document.querySelector('#editUserModal .modal-header');
 
         // EDIT MODAL POPULATION
-const editButtons = document.querySelectorAll('.btn-edit-user');
-editButtons.forEach(btn => {
-    btn.addEventListener('click', function () {
-        const id = this.dataset.id;
-        const name = this.dataset.name;
-        const email = this.dataset.email;
-        const role = this.dataset.role;
+    const editButtons = document.querySelectorAll('.btn-edit-user');
+        editButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.dataset.id;
+            const name = this.dataset.name;
+            const email = this.dataset.email;
+            const role = this.dataset.role;
 
-        document.getElementById('editUserId').value = id;
-        document.getElementById('editUserName').value = name;
-        document.getElementById('editUserEmail').value = email;
-        document.getElementById('editUserRole').value = role;
+            document.getElementById('editUserId').value = id;
+            document.getElementById('editUserName').value = name;
+            document.getElementById('editUserEmail').value = email;
+            document.getElementById('editUserRole').value = role;
 
-            if (parseInt(id) === 1) {
-                document.getElementById('editUserRole').disabled = true; //  Master Admin role protected
-            } else {
-                document.getElementById('editUserRole').disabled = false; // Admin & others can edit role
+                if (parseInt(id) === 1) {
+                    document.getElementById('editUserRole').disabled = true; //  Master Admin role protected
+                } else {
+                    document.getElementById('editUserRole').disabled = false; // Admin & others can edit role
+                }
+
+            // Apply header color
+            const modalHeader = document.querySelector('#editUserModal .modal-header');
+            modalHeader.classList.remove('card-admin', 'card-teacher', 'card-student');
+            modalHeader.classList.add('card-' + role);
+
+            editUserModal.show();
+        });
+    });
+        // ================== GENERATE DEFAULT PASSWORD BUTTON ==================
+        document.getElementById('generatePasswordBtn').addEventListener('click', function() {
+            const userId = document.getElementById('editUserId').value; // get user ID
+            if (!userId) {
+                alert('User ID not found.');
+                return;
             }
 
-        // Apply header color
-        const modalHeader = document.querySelector('#editUserModal .modal-header');
-        modalHeader.classList.remove('card-admin', 'card-teacher', 'card-student');
-        modalHeader.classList.add('card-' + role);
+            fetch(`<?= base_url('auth/generateDefaultPassword') ?>/${userId}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.password) {
+                        const defaultInput = document.getElementById('default_password');
+                        defaultInput.value = data.password; // populate field with new password
+                        console.log('Generated default password:', data.password);
+                        // Optional: show alert to notify admin
+                        // alert('New password generated and saved: ' + data.password);
+                    } else if (data.error) {
+                        alert('Error: ' + data.error);
+                    }
+                })
+                .catch(err => {
+                    console.error('Generate password failed:', err);
+                    alert('Something went wrong while generating password.');
+                });
+        });
 
-        editUserModal.show();
-    });
-});
+ });
 
-
-    });
     </script>
 
 </body>

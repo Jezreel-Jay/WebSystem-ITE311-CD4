@@ -59,3 +59,5 @@ $routes->get('settings', 'Auth::settings');
 $routes->post('auth/updateSettings', 'Auth::updateSettings');
 
 
+$routes->get('auth/generateDefaultPassword/(:num)', 'Auth::generateDefaultPassword/$1');
+
