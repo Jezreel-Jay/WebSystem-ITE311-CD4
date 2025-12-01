@@ -288,6 +288,7 @@ class Auth extends BaseController
 
     //     return redirect()->back()->with('success', "User '{$name}' updated successfully.");
     // }
+// ========================= UPDATE USER ROLE (DEFAULT PASSWORD OPTIONAL) =========================
 public function updateUserRole()
 {
     $userModel = new UserModel();
@@ -303,39 +304,40 @@ public function updateUserRole()
     $user = $userModel->find($id);
     if (!$user) return redirect()->back()->with('error', 'User not found.');
 
-
-        //  Verify default password
-    if (!$defaultPassword || !password_verify($defaultPassword, $user['password'])) {
-        return redirect()->back()->with('error', 'Default password is incorrect.');
-    }
     $updateData = ['name' => $name];
 
-    //  PROTECTED MASTER ADMIN ROLE
+    // PROTECTED MASTER ADMIN ROLE
     if ($id != 1) {
         $updateData['role'] = $role;
     } else {
         $updateData['role'] = $user['role']; // cannot change master admin role
     }
 
-    //  PASSWORD CHANGE LOGIC
+    // PASSWORD CHANGE LOGIC (verify default password only if new password entered)
     if (!empty($newPassword)) {
-        // Only apply new password if user actually entered it
+
+        // Require default password only if changing password
+        if (empty($defaultPassword) || !password_verify($defaultPassword, $user['password'])) {
+            return redirect()->back()->with('error', 'Default password is required and must be correct to change password.');
+        }
+
+        // Confirm new password
         if ($newPassword !== $confirmPassword) {
             return redirect()->back()->with('error', 'Passwords do not match.');
         }
+
+        // Prevent quotes
         if (preg_match('/[\'"]/', $newPassword)) {
             return redirect()->back()->with('error', 'Password cannot contain quotes.');
         }
+
         $updateData['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
     }
-    //  IMPORTANT CHANGE:
-    // Removed default_password overwrite → prevents logging in with old password
-    // $defaultPassword logic removed
 
     $userModel->update($id, $updateData);
 
     // Auto logout if master admin changes own password
-    if ($id == 1 && session()->get('userId') == 1) {
+    if ($id == 1 && session()->get('userId') == 1 && !empty($newPassword)) {
         session()->destroy();
         return redirect()->to(base_url('login'))
                          ->with('success', 'Your account has been updated. Please log in again.');
@@ -343,6 +345,7 @@ public function updateUserRole()
 
     return redirect()->back()->with('success', "User '{$name}' updated successfully.");
 }
+
 
 
     // ========================= DELETE USER =========================

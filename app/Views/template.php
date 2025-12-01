@@ -94,7 +94,29 @@
         .status-deleted { background-color: #dc3545; color: #fff; }
 
         /* ==================== DARK MODE ==================== */
-        /* Dark mode */
+    .input-wrapper {
+        position: relative;
+        
+    }
+
+    .input-wrapper input {
+        width: 100%;
+        padding-right: 35px; 
+      
+    }
+
+    .input-wrapper .toggle-password {
+        position: absolute;
+        top: 70%;
+        right: 8px; /* inside the textbox */
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #555;
+        user-select: none;
+        font-size: 1.1em;
+        user-select: none;    
+    }
+
 
 
         .dark-mode .userlist-wrapper .card-header {
@@ -121,7 +143,7 @@
 
         body.dark-mode .form-control,
         body.dark-mode .form-select {
-            background-color: #2a2a3b;
+            background-color: #444;
             color: #fff;
             border: 1px solid #444;
         }
@@ -161,26 +183,29 @@
                             <input type="text" name="name" class="form-control" id="editUserName" required>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 ">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" id="editUserEmail" disabled>
                         </div>
 
-                        <!-- Default Password (required) -->
-                        <div class="mb-3">
+                        <!-- Default Password (required only if resetting password) -->
+                        <div class="mb-3 input-wrapper">
                             <label for="default_password">Default Password</label>
-                            <input type="password" class="form-control" name="default_password" id="default_password" placeholder="Enter default password" required>
+                            <input type="password" class="form-control" name="default_password" id="default_password" placeholder="Enter default password if changing">
+                            <span class="toggle-password"><i class="bi bi-eye-fill"></i></span>     
                         </div>
 
                         <!-- Reset Password (optional) -->
-                        <div class="mb-3">
+                        <div class="mb-3 input-wrapper">
                             <label for="new_password">Reset Password</label>
                             <input type="password" class="form-control" name="new_password" id="new_password" placeholder="Leave blank if not changing">
+                            <span class="toggle-password"><i class="bi bi-eye-fill"></i></span> 
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 input-wrapper">
                             <label for="confirm_password">Confirm Password</label>
                             <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm new password">
+                            <span class="toggle-password"><i class="bi bi-eye-fill"></i></span> 
                         </div>
 
 
@@ -231,7 +256,7 @@
         const modalHeader = document.querySelector('#editUserModal .modal-header');
 
         // EDIT MODAL POPULATION
-    const editButtons = document.querySelectorAll('.btn-edit-user');
+        const editButtons = document.querySelectorAll('.btn-edit-user');
         editButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.dataset.id;
@@ -285,8 +310,23 @@
                 });
         });
 
- });
+    document.querySelectorAll('.toggle-password').forEach(icon => {
+        icon.addEventListener('click', function() {
+            const input = this.previousElementSibling;
+            const i = this.querySelector('i');
 
+            if (input.type === 'password') {
+                input.type = 'text';
+                i.classList.remove('bi-eye-fill');
+                i.classList.add('bi-eye-slash-fill');
+            } else {
+                input.type = 'password';
+                i.classList.remove('bi-eye-slash-fill');
+                i.classList.add('bi-eye-fill');
+            }
+        });
+    });
+ });
     </script>
 
 </body>
