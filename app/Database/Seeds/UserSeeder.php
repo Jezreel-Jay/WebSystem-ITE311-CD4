@@ -9,8 +9,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $this->db->table('users')->insert([
-            'name' => 'Admin User',
-            'email' => 'admin2300@example.com',
+            'name' => 'Zxcv Bnm',
+            'email' => 'Jezreeljayr@gmail.com',
             'password' => password_hash('pas0123', PASSWORD_DEFAULT),
             'role' => 'admin',
             'status' => 'active',

@@ -53,11 +53,10 @@ $routes->get('restricted-users', 'Auth::restrictedUsers');
 $routes->post('auth/unrestrictUser', 'Auth::unrestrictUser');
 $routes->post('auth/deleteUserPermanent', 'Auth::deleteUserPermanent');
 
-
-
 $routes->get('settings', 'Auth::settings');
 $routes->post('auth/updateSettings', 'Auth::updateSettings');
 
-
 $routes->get('auth/generateDefaultPassword/(:num)', 'Auth::generateDefaultPassword/$1');
 
+$routes->get('verify-otp', 'Auth::verifyOtp');
+$routes->post('verify-otp', 'Auth::verifyOtp');

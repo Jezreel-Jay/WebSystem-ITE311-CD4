@@ -21,8 +21,11 @@ class UserModel extends Model
         'is_deleted',
         'created_at',
         'updated_at',
-
-        
+        //  FIELDS FOR 2FA
+        'otp_code',
+        'otp_expires_at',
+        'is_2fa_enabled',
+ 
     ];
 
 
